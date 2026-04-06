@@ -13,14 +13,11 @@
 –paper: #f5f0e8;
 –cream: #ede8dc;
 –gold: #c9a84c;
-–gold-light: #e8d49a;
 –rust: #b85c38;
 –moss: #4a6741;
 –slate: #5a6672;
 –uap: #7b3fa0;
-–uap-light: #c9a0dc;
 –lost: #8b4513;
-–lost-light: #d4a574;
 –shadow: rgba(26,21,16,0.15);
 }
 
@@ -36,16 +33,15 @@ radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
 radial-gradient(ellipse at 80% 20%, rgba(74,103,65,0.06) 0%, transparent 40%);
 }
 
-/* –– HEADER –– */
+/* HEADER */
 header {
-padding: 2rem 2rem 1rem;
+padding: 1.5rem 1.5rem 1rem;
 border-bottom: 1px solid rgba(201,168,76,0.3);
 display: flex;
 align-items: baseline;
 gap: 1rem;
 flex-wrap: wrap;
 }
-
 .logo {
 font-family: ‘Playfair Display’, serif;
 font-size: 2rem;
@@ -53,308 +49,277 @@ font-style: italic;
 color: var(–ink);
 letter-spacing: -0.02em;
 }
-
 .logo span { color: var(–gold); }
-
 .tagline {
-font-size: 0.75rem;
+font-size: 0.72rem;
 font-weight: 300;
 color: var(–slate);
 letter-spacing: 0.12em;
 text-transform: uppercase;
 }
 
-/* –– SEARCH PANEL –– */
+/* SEARCH PANEL */
 .search-panel {
-max-width: 720px;
-margin: 2.5rem auto 0;
-padding: 0 1.5rem;
+max-width: 680px;
+margin: 2rem auto 0;
+padding: 0 1rem;
 }
-
 .search-card {
 background: white;
 border: 1px solid rgba(201,168,76,0.25);
 border-radius: 16px;
-padding: 2rem;
+padding: 1.5rem;
 box-shadow: 0 4px 32px var(–shadow);
 }
-
 .search-card h2 {
 font-family: ‘Playfair Display’, serif;
-font-size: 1.3rem;
-margin-bottom: 1.5rem;
-color: var(–ink);
+font-size: 1.25rem;
+margin-bottom: 1.25rem;
 }
-
 .field-row {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 1rem;
+gap: 0.75rem;
 margin-bottom: 1rem;
 }
+@media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
 
-@media (max-width: 520px) {
-.field-row { grid-template-columns: 1fr; }
-}
-
-.field {
-display: flex;
-flex-direction: column;
-gap: 0.4rem;
-}
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
 
 label {
-font-size: 0.72rem;
+font-size: 0.7rem;
 font-weight: 500;
 letter-spacing: 0.1em;
 text-transform: uppercase;
 color: var(–slate);
 }
-
 input[type=“text”] {
 font-family: ‘DM Sans’, sans-serif;
 font-size: 1rem;
-padding: 0.65rem 0.9rem;
+padding: 0.6rem 0.85rem;
 border: 1.5px solid var(–cream);
 border-radius: 10px;
 background: var(–paper);
 color: var(–ink);
 transition: border-color 0.2s;
 outline: none;
+-webkit-appearance: none;
 }
+input[type=“text”]:focus { border-color: var(–gold); background: white; }
 
-input[type=“text”]:focus {
-border-color: var(–gold);
-background: white;
-}
-
+/* FILTER CHIPS */
 .filter-row {
 display: flex;
-gap: 0.6rem;
+gap: 0.5rem;
 flex-wrap: wrap;
-margin-bottom: 1.4rem;
-margin-top: 0.6rem;
+margin-bottom: 1.25rem;
+margin-top: 0.25rem;
 }
-
 .filter-chip {
-display: flex;
+display: inline-flex;
 align-items: center;
-gap: 0.35rem;
-font-size: 0.8rem;
-padding: 0.35rem 0.75rem;
+gap: 0.3rem;
+padding: 0.35rem 0.7rem;
 border-radius: 20px;
 border: 1.5px solid var(–cream);
 background: var(–paper);
 cursor: pointer;
 color: var(–slate);
+font-family: ‘DM Sans’, sans-serif;
 font-weight: 500;
 transition: all 0.18s;
 user-select: none;
+-webkit-user-select: none;
+-webkit-tap-highlight-color: transparent;
 }
+.filter-chip .ci { font-size: 0.95rem; line-height: 1; display: inline-block; }
+.filter-chip .ct { font-size: 0.8rem; display: inline-block; }
 
 .filter-chip.active { background: var(–gold); border-color: var(–gold); color: white; }
-.filter-chip.active.uap { background: var(–uap); border-color: var(–uap); }
-.filter-chip.active.lost { background: var(–lost); border-color: var(–lost); }
-.filter-chip.active.hike { background: var(–moss); border-color: var(–moss); }
+.filter-chip.active.c-uap { background: var(–uap); border-color: var(–uap); }
+.filter-chip.active.c-lost { background: var(–lost); border-color: var(–lost); }
+.filter-chip.active.c-hike { background: var(–moss); border-color: var(–moss); }
+.filter-chip.active.c-natur { background: #2d8a5e; border-color: #2d8a5e; }
 
+/* SEARCH BUTTON */
 .btn-search {
 width: 100%;
 font-family: ‘DM Sans’, sans-serif;
 font-size: 1rem;
 font-weight: 500;
-padding: 0.85rem;
+padding: 0.8rem;
 border: none;
 border-radius: 12px;
 background: var(–ink);
 color: var(–paper);
 cursor: pointer;
 letter-spacing: 0.03em;
-transition: all 0.2s;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5rem;
+transition: background 0.2s, color 0.2s;
+-webkit-appearance: none;
 }
-
 .btn-search:hover { background: var(–gold); color: var(–ink); }
-.btn-search:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-search:active { opacity: 0.85; }
+.btn-search:disabled { opacity: 0.45; cursor: not-allowed; }
 
-/* –– LOADING –– */
-.loading {
-text-align: center;
-padding: 3rem 1.5rem;
-display: none;
+/* ERROR */
+#error-container { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
+.error-box {
+background: #fff5f5;
+border: 1px solid #fca5a5;
+border-radius: 10px;
+padding: 0.85rem 1rem;
+font-size: 0.85rem;
+color: #991b1b;
+margin-top: 0.75rem;
 }
 
+/* LOADING */
+.loading { text-align: center; padding: 3rem 1rem; display: none; }
 .spinner {
-width: 40px; height: 40px;
+width: 38px; height: 38px;
 border: 3px solid var(–cream);
 border-top-color: var(–gold);
 border-radius: 50%;
-animation: spin 0.9s linear infinite;
+animation: spin 0.85s linear infinite;
 margin: 0 auto 1rem;
 }
-
 @keyframes spin { to { transform: rotate(360deg); } }
+.loading p { font-size: 0.88rem; color: var(–slate); font-style: italic; }
 
-.loading p {
-font-size: 0.9rem;
-color: var(–slate);
-font-style: italic;
-}
-
-/* –– RESULTS –– */
+/* RESULTS */
 #results {
 max-width: 960px;
-margin: 2rem auto 4rem;
-padding: 0 1.5rem;
+margin: 2rem auto 1rem;
+padding: 0 1rem;
 display: none;
 }
-
 .results-header {
 display: flex;
 align-items: baseline;
 justify-content: space-between;
 flex-wrap: wrap;
 gap: 0.5rem;
-margin-bottom: 1.5rem;
+margin-bottom: 1.25rem;
 }
-
 .results-title {
 font-family: ‘Playfair Display’, serif;
-font-size: 1.5rem;
+font-size: 1.4rem;
 font-style: italic;
 }
-
-.results-meta {
-font-size: 0.8rem;
-color: var(–slate);
-}
+.results-meta { font-size: 0.78rem; color: var(–slate); margin-top: 0.1rem; }
 
 .btn-save-all {
-font-size: 0.8rem;
-padding: 0.4rem 0.9rem;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.78rem;
+font-weight: 500;
+padding: 0.38rem 0.85rem;
 border: 1.5px solid var(–gold);
 border-radius: 8px;
 background: transparent;
 color: var(–gold);
 cursor: pointer;
-font-family: ‘DM Sans’, sans-serif;
-font-weight: 500;
 transition: all 0.18s;
+-webkit-appearance: none;
 }
-
 .btn-save-all:hover { background: var(–gold); color: white; }
 
-/* –– SPOT CARDS –– */
+/* SPOT CARDS */
 .spots-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 1.25rem;
+grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+gap: 1rem;
 }
-
 .spot-card {
 background: white;
 border: 1px solid rgba(201,168,76,0.2);
 border-radius: 14px;
 overflow: hidden;
-box-shadow: 0 2px 16px var(–shadow);
+box-shadow: 0 2px 14px var(–shadow);
 transition: transform 0.2s, box-shadow 0.2s;
 position: relative;
 }
-
-.spot-card:hover { transform: translateY(-2px); box-shadow: 0 6px 28px var(–shadow); }
-
-.spot-card.dismissed { opacity: 0.35; }
+.spot-card:hover { transform: translateY(-2px); box-shadow: 0 5px 24px var(–shadow); }
+.spot-card.dismissed { opacity: 0.28; pointer-events: none; }
 .spot-card.visited { border-color: var(–moss); }
 .spot-card.visited::after {
-content: ‘✓ Besucht’;
+content: ‘\2713 Besucht’;
 position: absolute;
-top: 0.6rem; right: 0.6rem;
+top: 0.55rem; right: 0.55rem;
 background: var(–moss);
 color: white;
-font-size: 0.68rem;
+font-size: 0.66rem;
 font-weight: 600;
-padding: 0.2rem 0.55rem;
-border-radius: 6px;
-letter-spacing: 0.05em;
+padding: 0.18rem 0.5rem;
+border-radius: 5px;
+letter-spacing: 0.04em;
 }
 
-.spot-type-bar {
-height: 4px;
-background: var(–gold);
-}
+.type-bar { height: 4px; }
+.type-bar.culture { background: var(–rust); }
+.type-bar.hike { background: var(–moss); }
+.type-bar.lost { background: var(–lost); }
+.type-bar.uap { background: var(–uap); }
+.type-bar.nature { background: #2d8a5e; }
+.type-bar.gold { background: var(–gold); }
 
-.spot-type-bar.uap { background: var(–uap); }
-.spot-type-bar.lost { background: var(–lost); }
-.spot-type-bar.hike { background: var(–moss); }
-.spot-type-bar.nature { background: #2d8a5e; }
-.spot-type-bar.culture { background: var(–rust); }
-
-.spot-body { padding: 1.1rem 1.1rem 0.9rem; }
+.spot-body { padding: 1rem 1rem 0.75rem; }
 
 .spot-badge {
-display: inline-flex;
-align-items: center;
-gap: 0.3rem;
-font-size: 0.68rem;
+display: inline-block;
+font-size: 0.66rem;
 font-weight: 600;
-letter-spacing: 0.08em;
+letter-spacing: 0.07em;
 text-transform: uppercase;
-padding: 0.2rem 0.55rem;
-border-radius: 5px;
-margin-bottom: 0.6rem;
+padding: 0.18rem 0.5rem;
+border-radius: 4px;
+margin-bottom: 0.5rem;
 background: var(–cream);
 color: var(–slate);
 }
-
-.spot-badge.uap { background: rgba(123,63,160,0.1); color: var(–uap); }
-.spot-badge.lost { background: rgba(139,69,19,0.1); color: var(–lost); }
-.spot-badge.hike { background: rgba(74,103,65,0.1); color: var(–moss); }
-.spot-badge.nature { background: rgba(45,138,94,0.1); color: #2d8a5e; }
 .spot-badge.culture { background: rgba(184,92,56,0.1); color: var(–rust); }
+.spot-badge.hike { background: rgba(74,103,65,0.1); color: var(–moss); }
+.spot-badge.lost { background: rgba(139,69,19,0.12); color: var(–lost); }
+.spot-badge.uap { background: rgba(123,63,160,0.1); color: var(–uap); }
+.spot-badge.nature { background: rgba(45,138,94,0.1); color: #2d8a5e; }
 
 .spot-name {
 font-family: ‘Playfair Display’, serif;
-font-size: 1.1rem;
+font-size: 1.05rem;
 line-height: 1.25;
-margin-bottom: 0.5rem;
-color: var(–ink);
+margin-bottom: 0.45rem;
 }
-
 .spot-desc {
-font-size: 0.83rem;
+font-size: 0.82rem;
 line-height: 1.55;
 color: #555;
-margin-bottom: 0.9rem;
+margin-bottom: 0.7rem;
 }
+.spot-highlight { font-size: 0.76rem; color: var(–gold); font-weight: 500; margin-bottom: 0.35rem; }
+.spot-tipp { font-size: 0.74rem; color: var(–slate); font-style: italic; margin-bottom: 0.7rem; }
 
 .spot-meta {
 display: flex;
 gap: 1rem;
-font-size: 0.75rem;
+font-size: 0.74rem;
 color: var(–slate);
-padding-top: 0.7rem;
+padding-top: 0.65rem;
 border-top: 1px solid var(–cream);
 flex-wrap: wrap;
 }
 
-.spot-meta span { display: flex; align-items: center; gap: 0.3rem; }
-
 .spot-actions {
 display: flex;
-gap: 0.5rem;
-padding: 0.7rem 1.1rem;
+gap: 0.4rem;
+padding: 0.6rem 1rem;
 background: var(–paper);
 border-top: 1px solid var(–cream);
 }
-
-.btn-action {
+.btn-act {
 flex: 1;
 font-family: ‘DM Sans’, sans-serif;
-font-size: 0.75rem;
+font-size: 0.74rem;
 font-weight: 500;
-padding: 0.45rem 0.3rem;
+padding: 0.42rem 0.25rem;
 border-radius: 8px;
 border: 1.5px solid var(–cream);
 background: white;
@@ -362,77 +327,60 @@ cursor: pointer;
 color: var(–slate);
 transition: all 0.15s;
 text-align: center;
+-webkit-appearance: none;
+-webkit-tap-highlight-color: transparent;
 }
+.btn-act:active { opacity: 0.75; }
+.btn-act.save { border-color: var(–gold); color: var(–gold); }
+.btn-act.save:hover,
+.btn-act.save.on { background: var(–gold); color: white; border-color: var(–gold); }
+.btn-act.vis { border-color: var(–moss); color: var(–moss); }
+.btn-act.vis:hover,
+.btn-act.vis.on { background: var(–moss); color: white; border-color: var(–moss); }
+.btn-act.dis:hover { border-color: var(–rust); color: var(–rust); }
 
-.btn-action:hover { border-color: var(–slate); color: var(–ink); }
-
-.btn-action.save { border-color: var(–gold); color: var(–gold); }
-.btn-action.save:hover, .btn-action.saved { background: var(–gold); color: white; border-color: var(–gold); }
-
-.btn-action.visited-btn { border-color: var(–moss); color: var(–moss); }
-.btn-action.visited-btn:hover, .btn-action.is-visited { background: var(–moss); color: white; border-color: var(–moss); }
-
-.btn-action.dismiss:hover { border-color: var(–rust); color: var(–rust); }
-
-/* –– SAVED SIDEBAR –– */
+/* SAVED LIST */
 .saved-section {
 max-width: 960px;
 margin: 0 auto 4rem;
-padding: 0 1.5rem;
+padding: 0 1rem;
 display: none;
 }
-
 .saved-section h3 {
 font-family: ‘Playfair Display’, serif;
-font-size: 1.2rem;
-margin-bottom: 1rem;
+font-size: 1.1rem;
 font-style: italic;
+margin-bottom: 0.85rem;
 }
-
-.saved-list {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-}
-
+.saved-list { display: flex; flex-direction: column; gap: 0.45rem; }
 .saved-item {
 display: flex;
 align-items: center;
-gap: 0.75rem;
+gap: 0.65rem;
 background: white;
 border: 1px solid var(–cream);
 border-radius: 10px;
-padding: 0.7rem 1rem;
-font-size: 0.88rem;
+padding: 0.6rem 0.9rem;
+font-size: 0.85rem;
+flex-wrap: wrap;
 }
-
-.saved-item .s-name { font-weight: 500; flex: 1; }
-.saved-item .s-type { font-size: 0.72rem; color: var(–slate); }
-.saved-item .s-visited { color: var(–moss); font-size: 0.78rem; font-weight: 500; }
-.saved-item button {
+.s-name { font-weight: 500; flex: 1; min-width: 100px; }
+.s-type { font-size: 0.7rem; color: var(–slate); }
+.s-dist { font-size: 0.7rem; color: var(–slate); }
+.s-vis { font-size: 0.75rem; color: var(–moss); font-weight: 500; }
+.s-del {
 font-size: 0.72rem;
-padding: 0.2rem 0.5rem;
+padding: 0.18rem 0.45rem;
 border: 1px solid var(–cream);
 border-radius: 5px;
 background: transparent;
 cursor: pointer;
 color: var(–slate);
 font-family: ‘DM Sans’, sans-serif;
+-webkit-appearance: none;
 }
 
-.divider { height: 1px; background: var(–cream); margin: 2rem auto; max-width: 960px; }
-
-/* –– ERROR –– */
-.error-box {
-background: #fff5f5;
-border: 1px solid #fca5a5;
-border-radius: 10px;
-padding: 1rem 1.2rem;
-font-size: 0.88rem;
-color: #991b1b;
-margin: 1rem auto;
-max-width: 720px;
-}
+.divider { height: 1px; background: var(–cream); margin: 1.5rem auto; max-width: 960px; }
 </style>
 
 </head>
@@ -440,49 +388,56 @@ max-width: 720px;
 
 <header>
 <div class="logo">Fern<span>weh</span></div>
-<div class="tagline">Dein persönlicher Reiseplaner</div>
+<div class="tagline">Dein pers&ouml;nlicher Reiseplaner</div>
 </header>
 
 <div class="search-panel">
 <div class="search-card">
 <h2>Wohin geht die Reise?</h2>
+
+```
 <div class="field-row">
 <div class="field">
-<label>Urlaubsort / Startpunkt</label>
-<input type="text" id="inp-ort" placeholder="z. B. Schottland, Highlands" />
+<label>Urlaubsort / Region</label>
+<input type="text" id="inp-ort" placeholder="z.B. Schottland, Highlands" autocomplete="off" />
 </div>
 <div class="field">
-<label>Dein Standort (für Distanz)</label>
-<input type="text" id="inp-standort" placeholder="z. B. Wien, München …" />
+<label>Dein Heimatstandort</label>
+<input type="text" id="inp-von" placeholder="z.B. Wien, M&uuml;nchen" autocomplete="off" />
 </div>
 </div>
-<div class="filter-row">
-<div class="filter-chip active" data-cat="sehenswuerdigkeiten">🏛 Sehenswürdigkeiten</div>
-<div class="filter-chip active hike" data-cat="wandern">🥾 Wandern</div>
-<div class="filter-chip active lost" data-cat="lost-places">🏚 Lost Places</div>
-<div class="filter-chip active uap" data-cat="uap">🛸 UAP-Hotspots</div>
-<div class="filter-chip active" data-cat="natur">🌿 Natur</div>
-<div class="filter-chip" data-cat="kulinarik">🍽 Kulinarik</div>
+
+<div class="filter-row" id="filter-row">
+<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls=""><span class="ci">&#127963;</span><span class="ct">Sehenswürdigkeiten</span></div>
+<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike"><span class="ci">&#129464;</span><span class="ct">Wandern</span></div>
+<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost"><span class="ci">&#127962;</span><span class="ct">Lost Places</span></div>
+<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap"><span class="ci">&#128760;</span><span class="ct">UAP-Hotspots</span></div>
+<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur"><span class="ci">&#127807;</span><span class="ct">Natur</span></div>
+<div class="filter-chip" data-cat="kulinarik" data-cls=""><span class="ci">&#127869;</span><span class="ct">Kulinarik</span></div>
 </div>
-<button class="btn-search" id="btn-search" onclick="startSearch()">
-<span>🔍</span> Spots entdecken
+
+<button class="btn-search" id="btn-search" type="button" onclick="startSearch()">
+&#128269;&nbsp; Spots entdecken
 </button>
+```
+
 </div>
+</div>
+
 <div id="error-container"></div>
-</div>
 
 <div class="loading" id="loading">
 <div class="spinner"></div>
-<p id="loading-text">Erkunde versteckte Orte, Lost Places und Wanderpfade …</p>
+<p id="loading-text">Erkunde verlassene Orte und Wanderpfade &hellip;</p>
 </div>
 
 <div id="results">
 <div class="results-header">
 <div>
-<div class="results-title" id="results-title">Entdeckungen</div>
+<div class="results-title" id="results-title"></div>
 <div class="results-meta" id="results-meta"></div>
 </div>
-<button class="btn-save-all" onclick="saveAll()">Alle speichern</button>
+<button class="btn-save-all" type="button" onclick="saveAll()">Alle speichern</button>
 </div>
 <div class="spots-grid" id="spots-grid"></div>
 </div>
@@ -490,61 +445,89 @@ max-width: 720px;
 <div class="divider" id="saved-divider" style="display:none"></div>
 
 <div class="saved-section" id="saved-section">
-<h3>📋 Meine gespeicherten Orte</h3>
+<h3>&#128203;&nbsp;Meine gespeicherten Orte</h3>
 <div class="saved-list" id="saved-list"></div>
 </div>
 
 <script>
+/* =========================================================
+KONFIGURATION
+========================================================= */
+var WORKER_URL = 'https://finnhub-proxy.zzbuk.workers.dev';
+
+/* =========================================================
+STATE
+========================================================= */
 var activeCategories = ['sehenswuerdigkeiten','wandern','lost-places','uap','natur'];
 var currentSpots = [];
 var savedSpots = JSON.parse(localStorage.getItem('fernweh_saved') || '[]');
 
-// Filter chips
-document.querySelectorAll('.filter-chip').forEach(function(chip) {
-chip.addEventListener('click', function() {
+/* =========================================================
+TYPE CONFIG
+========================================================= */
+var TYPE = {
+'sehenswuerdigkeiten': { label: 'Sehenswürdigkeit', bar: 'culture', badge: 'culture' },
+'wandern': { label: 'Wandertipp', bar: 'hike', badge: 'hike' },
+'lost-places': { label: 'Lost Place', bar: 'lost', badge: 'lost' },
+'uap': { label: 'UAP-Hotspot', bar: 'uap', badge: 'uap' },
+'natur': { label: 'Natur', bar: 'nature', badge: 'nature' },
+'kulinarik': { label: 'Kulinarik', bar: 'gold', badge: '' }
+};
+
+/* =========================================================
+FILTER CHIPS
+========================================================= */
+document.getElementById('filter-row').addEventListener('click', function(e) {
+var chip = e.target.closest('.filter-chip');
+if (!chip) return;
 var cat = chip.dataset.cat;
+var cls = chip.dataset.cls;
 if (chip.classList.contains('active')) {
 chip.classList.remove('active');
+if (cls) chip.classList.remove(cls);
 activeCategories = activeCategories.filter(function(c) { return c !== cat; });
 } else {
 chip.classList.add('active');
+if (cls) chip.classList.add(cls);
 activeCategories.push(cat);
 }
 });
-});
 
-var typeConfig = {
-'sehenswuerdigkeiten': { label: '🏛 Sehenswürdigkeit', cls: 'culture' },
-'wandern': { label: '🥾 Wandertipp', cls: 'hike' },
-'lost-places': { label: '🏚 Lost Place', cls: 'lost' },
-'uap': { label: '🛸 UAP-Hotspot', cls: 'uap' },
-'natur': { label: '🌿 Natur', cls: 'nature' },
-'kulinarik': { label: '🍽 Kulinarik', cls: 'culture' }
-};
-
+/* =========================================================
+LOADING TEXT ROTATION
+========================================================= */
 var loadingTexts = [
-'Durchstöbere verlassene Orte und Wanderpfade …',
-'Prüfe UAP-Sichtungsberichte und Mysterien …',
-'Kalkuliere Fahrzeiten und Distanzen …',
-'Sammle Geheimtipps und versteckte Spots …'
+'Durchst\u00f6bere verlassene Orte und Wanderpfade \u2026',
+'Pr\u00fcfe UAP-Sichtungsberichte und Kraftorte \u2026',
+'Kalkuliere Fahrzeiten und Distanzen \u2026',
+'Sammle Geheimtipps und versteckte Spots \u2026'
 ];
-
 var loadingInterval;
 
+/* =========================================================
+API CALL via Cloudflare Worker
+========================================================= */
+function callApi(payload) {
+return fetch(WORKER_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+}).then(function(r) {
+if (!r.ok) throw new Error('HTTP ' + r.status);
+return r.json();
+});
+}
+
+/* =========================================================
+SEARCH
+========================================================= */
 function startSearch() {
 var ort = document.getElementById('inp-ort').value.trim();
-var standort = document.getElementById('inp-standort').value.trim();
-var errContainer = document.getElementById('error-container');
-errContainer.innerHTML = '';
+var standort = document.getElementById('inp-von').value.trim();
+showError('');
 
-if (!ort) {
-errContainer.innerHTML = '<div class="error-box">Bitte gib einen Urlaubsort ein.</div>';
-return;
-}
-if (activeCategories.length === 0) {
-errContainer.innerHTML = '<div class="error-box">Bitte wähle mindestens eine Kategorie.</div>';
-return;
-}
+if (!ort) { showError('Bitte einen Urlaubsort eingeben.'); return; }
+if (activeCategories.length === 0) { showError('Bitte mindestens eine Kategorie w\u00e4hlen.'); return; }
 
 document.getElementById('results').style.display = 'none';
 document.getElementById('loading').style.display = 'block';
@@ -554,59 +537,44 @@ var li = 0;
 loadingInterval = setInterval(function() {
 li = (li + 1) % loadingTexts.length;
 document.getElementById('loading-text').textContent = loadingTexts[li];
-}, 1800);
+}, 1900);
 
-var catLabels = activeCategories.map(function(c) {
-return typeConfig[c] ? typeConfig[c].label.replace(/^.{2}/, '').trim() : c;
+var catNames = activeCategories.map(function(c) {
+return TYPE[c] ? TYPE[c].label : c;
 }).join(', ');
 
-var standortHinweis = standort
-? 'Der Nutzer kommt aus/von: ' + standort + '. Schätze die Entfernung und Autofahrtzeit von dort zu jedem Spot.'
-: 'Standort des Nutzers unbekannt. Gib trotzdem geschätzte Distanz vom Urlaubsort-Zentrum an.';
+var distHinweis = standort
+? 'Der Nutzer reist von "' + standort + '". Sch\u00e4tze Distanz (km) und Autofahrtzeit (Minuten) von dort zu jedem Spot.'
+: 'Standort unbekannt \u2013 sch\u00e4tze Distanz (km) und Fahrzeit (min) vom Zentrum des Urlaubsorts.';
 
-var systemPrompt = 'Du bist ein erfahrener Reiseführer und Geheimtipp-Experte. Antworte NUR mit validem JSON, kein Markdown, keine Erklärungen außerhalb des JSON.';
+var system = 'Du bist ein erfahrener Reiseguide und Geheimtipp-Experte. Antworte AUSSCHLIESSLICH mit validem JSON ohne Markdown-Backticks und ohne Text ausserhalb des JSON.';
 
-var userPrompt = 'Erstelle eine Liste von 8-12 interessanten Spots für: ' + ort + '.\n\n' +
-'Gewünschte Kategorien: ' + catLabels + '\n\n' +
-standortHinweis + '\n\n' +
-'Wichtig für Lost Places: Echte oder plausible verlassene Orte (Fabriken, Kasernen, Sanatorien, Kirchen, Hotels). Mit kurzem Mythos oder Geschichte.\n' +
-'Wichtig für UAP-Hotspots: Orte mit dokumentierten oder legendären UFO/UAP-Sichtungen, Kraftorten, Ley-Linien, mystischen Phänomenen. Spannende Hintergrundinfo.\n' +
-'Wichtig für Wandertipps: Konkrete Route oder Trail-Name, Schwierigkeit, Länge in km, Highlights.\n\n' +
-'Antworte AUSSCHLIESSLICH mit diesem JSON-Format:\n' +
-'{\n' +
-' "destination": "Name des Ortes",\n' +
-' "spots": [\n' +
-' {\n' +
-' "id": "spot_1",\n' +
-' "name": "Name des Spots",\n' +
-' "type": "lost-places|uap|wandern|sehenswuerdigkeiten|natur|kulinarik",\n' +
-' "description": "Spannende Beschreibung (2-4 Sätze). Bei Lost Places: Geschichte und Mythos. Bei UAP: Sichtungsberichte. Bei Wandern: Route und Highlights.",\n' +
-' "distanz_km": 15,\n' +
-' "fahrzeit_min": 20,\n' +
-' "besonderheit": "Ein kurzer prägnanter Highlight-Satz",\n' +
-' "tipp": "Praktischer Tipp (beste Reisezeit, Zugang, Vorsicht etc.)"\n' +
-' }\n' +
-' ]\n' +
-'}';
+var prompt =
+'Erstelle 8 bis 12 interessante Reise-Spots f\u00fcr das Ziel: "' + ort + '".\n\n' +
+'Gew\u00fcnschte Kategorien: ' + catNames + '\n\n' + distHinweis + '\n\n' +
+'Richtlinien:\n' +
+'- Lost Places: echte oder sehr plausible verlassene Orte (Fabriken, Sanatorien, Kasernen, Hotels, Kirchen). Geschichte + Mythos + Zugangshinweis.\n' +
+'- UAP-Hotspots: dokumentierte oder legend\u00e4re UFO/UAP-Sichtungen, Kraftorte, Ley-Linien. Sichtungsgeschichte + atmosph\u00e4rische Beschreibung.\n' +
+'- Wandern: konkreter Trail/Route, L\u00e4nge (km), H\u00f6henmeter, Schwierigkeitsgrad (leicht/mittel/schwer), Highlights.\n' +
+'- Sehenswürdigkeiten: kulturell oder historisch bedeutsam, kurze Geschichte.\n' +
+'- Natur: besondere Landschaft, Geologie, Flora/Fauna.\n' +
+'- Kulinarik: lokale Spezialit\u00e4t oder Restaurant-Empfehlung mit kurzem Kontext.\n\n' +
+'Gib als Antwort NUR dieses JSON zur\u00fcck (keine weiteren Texte):\n' +
+'{"destination":"Name des Reiseziels","spots":[{"id":"s1","name":"Ortsname","type":"lost-places","description":"2-4 S\u00e4tze","distanz_km":25,"fahrzeit_min":30,"besonderheit":"Ein pr\u00e4gnanter Highlight-Satz","tipp":"Praktischer Hinweis"}]}';
 
-fetch('https://api.anthropic.com/v1/messages', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({
-model: 'claude-sonnet-4-20250514',
-max_tokens: 1000,
-system: systemPrompt,
-messages: [{ role: 'user', content: userPrompt }]
+callApi({
+model: 'claude-haiku-4-5-20251001',
+max_tokens: 2500,
+system: system,
+messages: [{ role: 'user', content: prompt }]
 })
-})
-.then(function(r) { return r.json(); })
 .then(function(data) {
 clearInterval(loadingInterval);
 document.getElementById('loading').style.display = 'none';
 document.getElementById('btn-search').disabled = false;
 
 if (data.error) {
-showError('API-Fehler: ' + data.error.message);
+showError('API-Fehler: ' + (data.error.message || JSON.stringify(data.error)));
 return;
 }
 
@@ -614,17 +582,11 @@ var raw = '';
 if (data.content && data.content[0] && data.content[0].text) {
 raw = data.content[0].text;
 }
-
-// Strip possible markdown fences
 raw = raw.replace(/```json|```/g, '').trim();
 
 var parsed;
-try {
-parsed = JSON.parse(raw);
-} catch(e) {
-showError('Antwort konnte nicht verarbeitet werden. Bitte nochmals versuchen.');
-return;
-}
+try { parsed = JSON.parse(raw); }
+catch(e) { showError('Antwort konnte nicht verarbeitet werden \u2013 bitte nochmal versuchen.'); return; }
 
 currentSpots = parsed.spots || [];
 renderResults(parsed.destination || ort, standort);
@@ -633,144 +595,101 @@ renderResults(parsed.destination || ort, standort);
 clearInterval(loadingInterval);
 document.getElementById('loading').style.display = 'none';
 document.getElementById('btn-search').disabled = false;
-showError('Netzwerkfehler: ' + e.message);
+showError('Verbindungsfehler: ' + (e.message || 'Unbekannt'));
 });
 }
 
-function showError(msg) {
-document.getElementById('error-container').innerHTML = '<div class="error-box">' + msg + '</div>';
-}
-
+/* =========================================================
+RENDER RESULTS
+========================================================= */
 function renderResults(destination, standort) {
 var grid = document.getElementById('spots-grid');
 grid.innerHTML = '';
 
 document.getElementById('results-title').textContent = destination;
 var meta = currentSpots.length + ' Spots gefunden';
-if (standort) meta += ' · Fahrzeiten ab ' + standort;
+if (standort) meta += ' \u00b7 Fahrzeiten ab ' + standort;
 document.getElementById('results-meta').textContent = meta;
 document.getElementById('results').style.display = 'block';
 
 currentSpots.forEach(function(spot) {
-var card = createCard(spot);
-grid.appendChild(card);
+grid.appendChild(buildCard(spot));
 });
 
 renderSaved();
 }
 
-function createCard(spot) {
-var cfg = typeConfig[spot.type] || { label: spot.type, cls: '' };
+/* =========================================================
+BUILD CARD
+========================================================= */
+function buildCard(spot) {
+var cfg = TYPE[spot.type] || { label: spot.type, bar: 'gold', badge: '' };
 var isSaved = savedSpots.some(function(s) { return s.id === spot.id; });
 var isVisited = savedSpots.some(function(s) { return s.id === spot.id && s.visited; });
+
+var fz = (spot.fahrzeit_min || 0) < 60
+? (spot.fahrzeit_min || '?') + ' Min.'
+: Math.floor(spot.fahrzeit_min / 60) + 'h ' + (spot.fahrzeit_min % 60 ? (spot.fahrzeit_min % 60) + 'min' : '');
 
 var card = document.createElement('div');
 card.className = 'spot-card' + (isVisited ? ' visited' : '');
 card.id = 'card-' + spot.id;
 
-var fahrzeit = spot.fahrzeit_min < 60
-? spot.fahrzeit_min + ' Min.'
-: Math.floor(spot.fahrzeit_min / 60) + 'h ' + (spot.fahrzeit_min % 60 || '') + (spot.fahrzeit_min % 60 ? 'min' : '');
-
 card.innerHTML =
-'<div class="spot-type-bar ' + cfg.cls + '"></div>' +
+'<div class="type-bar ' + cfg.bar + '"></div>' +
 '<div class="spot-body">' +
-'<div class="spot-badge ' + cfg.cls + '">' + cfg.label + '</div>' +
-'<div class="spot-name">' + escHtml(spot.name) + '</div>' +
-'<div class="spot-desc">' + escHtml(spot.description) + '</div>' +
-(spot.besonderheit ? '<div style="font-size:0.78rem;color:var(--gold);font-weight:500;margin-bottom:0.4rem;">✦ ' + escHtml(spot.besonderheit) + '</div>' : '') +
-(spot.tipp ? '<div style="font-size:0.76rem;color:var(--slate);font-style:italic;">💡 ' + escHtml(spot.tipp) + '</div>' : '') +
+'<span class="spot-badge ' + cfg.badge + '">' + esc(cfg.label) + '</span>' +
+'<div class="spot-name">' + esc(spot.name) + '</div>' +
+'<div class="spot-desc">' + esc(spot.description) + '</div>' +
+(spot.besonderheit ? '<div class="spot-highlight">&#10022;&nbsp;' + esc(spot.besonderheit) + '</div>' : '') +
+(spot.tipp ? '<div class="spot-tipp">&#128161;&nbsp;' + esc(spot.tipp) + '</div>' : '') +
 '<div class="spot-meta">' +
-'<span>📍 ' + (spot.distanz_km || '?') + ' km</span>' +
-'<span>🚗 ca. ' + fahrzeit + '</span>' +
+'<span>&#128205;&nbsp;' + (spot.distanz_km || '?') + ' km</span>' +
+'<span>&#128663;&nbsp;ca. ' + fz + '</span>' +
 '</div>' +
 '</div>' +
 '<div class="spot-actions">' +
-'<button class="btn-action save ' + (isSaved ? 'saved' : '') + '" id="save-' + spot.id + '" onclick="toggleSave(\'' + spot.id + '\')">' +
-(isSaved ? '✓ Gespeichert' : '+ Speichern') +
-'</button>' +
-'<button class="btn-action visited-btn ' + (isVisited ? 'is-visited' : '') + '" id="visited-' + spot.id + '" onclick="toggleVisited(\'' + spot.id + '\')">' +
-(isVisited ? '✓ Besucht' : '🗺 Besucht?') +
-'</button>' +
-'<button class="btn-action dismiss" onclick="dismissCard(\'' + spot.id + '\')">✕</button>' +
+'<button type="button" class="btn-act save ' + (isSaved ? 'on' : '') + '" id="bs-' + spot.id + '" onclick="toggleSave(\'' + spot.id + '\')">' + (isSaved ? '\u2713 Gespeichert' : '+ Speichern') + '</button>' +
+'<button type="button" class="btn-act vis ' + (isVisited ? 'on' : '') + '" id="bv-' + spot.id + '" onclick="toggleVisited(\'' + spot.id + '\')">' + (isVisited ? '\u2713 Besucht' : '&#128506; Besucht?') + '</button>' +
+'<button type="button" class="btn-act dis" onclick="dismissCard(\'' + spot.id + '\')">\u2715</button>' +
 '</div>';
 
 return card;
 }
 
-function escHtml(str) {
+function esc(str) {
 if (!str) return '';
 return String(str)
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '&quot;');
+.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+/* =========================================================
+CARD ACTIONS
+========================================================= */
 function toggleSave(id) {
 var spot = currentSpots.find(function(s) { return s.id === id; });
 if (!spot) return;
-
 var idx = savedSpots.findIndex(function(s) { return s.id === id; });
-if (idx >= 0) {
-savedSpots.splice(idx, 1);
-} else {
-savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: false, distanz_km: spot.distanz_km });
-}
-
-localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
-refreshCard(id);
-renderSaved();
+if (idx >= 0) savedSpots.splice(idx, 1);
+else savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: false, distanz_km: spot.distanz_km });
+persist(); refreshCard(id); renderSaved();
 }
 
 function toggleVisited(id) {
 var spot = currentSpots.find(function(s) { return s.id === id; });
 if (!spot) return;
-
 var saved = savedSpots.find(function(s) { return s.id === id; });
-if (!saved) {
-// Auto-save if not saved yet
-savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: true, distanz_km: spot.distanz_km });
-} else {
-saved.visited = !saved.visited;
-}
-
-localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
-refreshCard(id);
-renderSaved();
+if (!saved) savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: true, distanz_km: spot.distanz_km });
+else saved.visited = !saved.visited;
+persist(); refreshCard(id); renderSaved();
 }
 
 function dismissCard(id) {
 var card = document.getElementById('card-' + id);
-if (card) {
-card.style.transition = 'opacity 0.3s';
-card.style.opacity = '0';
-setTimeout(function() { card.style.display = 'none'; }, 300);
-}
-}
-
-function refreshCard(id) {
-var spot = currentSpots.find(function(s) { return s.id === id; });
-if (!spot) return;
-var card = document.getElementById('card-' + id);
 if (!card) return;
-
-var isSaved = savedSpots.some(function(s) { return s.id === id; });
-var isVisited = savedSpots.some(function(s) { return s.id === id && s.visited; });
-
-if (isVisited) card.classList.add('visited'); else card.classList.remove('visited');
-
-var saveBtn = document.getElementById('save-' + id);
-if (saveBtn) {
-saveBtn.textContent = isSaved ? '✓ Gespeichert' : '+ Speichern';
-if (isSaved) saveBtn.classList.add('saved'); else saveBtn.classList.remove('saved');
-}
-
-var visitedBtn = document.getElementById('visited-' + id);
-if (visitedBtn) {
-visitedBtn.textContent = isVisited ? '✓ Besucht' : '🗺 Besucht?';
-if (isVisited) visitedBtn.classList.add('is-visited'); else visitedBtn.classList.remove('is-visited');
-}
+card.style.transition = 'opacity 0.25s';
+card.style.opacity = '0';
+setTimeout(function() { card.classList.add('dismissed'); card.style.opacity = ''; }, 260);
 }
 
 function saveAll() {
@@ -779,11 +698,25 @@ if (!savedSpots.find(function(s) { return s.id === spot.id; })) {
 savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: false, distanz_km: spot.distanz_km });
 }
 });
-localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
+persist();
 currentSpots.forEach(function(spot) { refreshCard(spot.id); });
 renderSaved();
 }
 
+function refreshCard(id) {
+var isSaved = savedSpots.some(function(s) { return s.id === id; });
+var isVisited = savedSpots.some(function(s) { return s.id === id && s.visited; });
+var card = document.getElementById('card-' + id);
+if (card) { if (isVisited) card.classList.add('visited'); else card.classList.remove('visited'); }
+var bs = document.getElementById('bs-' + id);
+if (bs) { bs.textContent = isSaved ? '\u2713 Gespeichert' : '+ Speichern'; if (isSaved) bs.classList.add('on'); else bs.classList.remove('on'); }
+var bv = document.getElementById('bv-' + id);
+if (bv) { bv.innerHTML = isVisited ? '\u2713 Besucht' : '&#128506; Besucht?'; if (isVisited) bv.classList.add('on'); else bv.classList.remove('on'); }
+}
+
+/* =========================================================
+SAVED LIST
+========================================================= */
 function renderSaved() {
 var list = document.getElementById('saved-list');
 var section = document.getElementById('saved-section');
@@ -795,38 +728,45 @@ section.style.display = 'none';
 divider.style.display = 'none';
 return;
 }
-
 section.style.display = 'block';
 divider.style.display = 'block';
 
 savedSpots.forEach(function(s) {
-var cfg = typeConfig[s.type] || { label: s.type };
+var cfg = TYPE[s.type] || { label: s.type };
 var item = document.createElement('div');
 item.className = 'saved-item';
 item.innerHTML =
-'<span class="s-name">' + escHtml(s.name) + '</span>' +
-'<span class="s-type">' + (cfg.label || s.type) + '</span>' +
-(s.distanz_km ? '<span style="font-size:0.72rem;color:var(--slate);">📍 ' + s.distanz_km + ' km</span>' : '') +
-(s.visited ? '<span class="s-visited">✓ besucht</span>' : '') +
-'<button onclick="removeFromSaved(\'' + s.id + '\')">✕</button>';
+'<span class="s-name">' + esc(s.name) + '</span>' +
+'<span class="s-type">' + esc(cfg.label) + '</span>' +
+(s.distanz_km ? '<span class="s-dist">&#128205;&nbsp;' + s.distanz_km + ' km</span>' : '') +
+(s.visited ? '<span class="s-vis">\u2713 besucht</span>' : '') +
+'<button class="s-del" type="button" onclick="removeSaved(\'' + s.id + '\')">\u2715</button>';
 list.appendChild(item);
 });
 }
 
-function removeFromSaved(id) {
+function removeSaved(id) {
 savedSpots = savedSpots.filter(function(s) { return s.id !== id; });
-localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
-refreshCard(id);
-renderSaved();
+persist(); refreshCard(id); renderSaved();
 }
 
-// Init on load
-renderSaved();
+function persist() {
+localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
+}
 
-// Enter key
+/* =========================================================
+HELPERS
+========================================================= */
+function showError(msg) {
+document.getElementById('error-container').innerHTML =
+msg ? '<div class="error-box">' + msg + '</div>' : '';
+}
+
 document.addEventListener('keydown', function(e) {
 if (e.key === 'Enter') startSearch();
 });
+
+renderSaved();
 </script>
 
 </body>
