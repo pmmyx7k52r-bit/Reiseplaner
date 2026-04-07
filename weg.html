@@ -408,12 +408,12 @@ font-family: ‘DM Sans’, sans-serif;
 </div>
 
 <div class="filter-row" id="filter-row">
-<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls=""><span class="ci">&#127963;</span><span class="ct">Sehenswürdigkeiten</span></div>
-<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike"><span class="ci">&#129464;</span><span class="ct">Wandern</span></div>
-<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost"><span class="ci">&#127962;</span><span class="ct">Lost Places</span></div>
-<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap"><span class="ci">&#128760;</span><span class="ct">UAP-Hotspots</span></div>
-<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur"><span class="ci">&#127807;</span><span class="ct">Natur</span></div>
-<div class="filter-chip" data-cat="kulinarik" data-cls=""><span class="ci">&#127869;</span><span class="ct">Kulinarik</span></div>
+<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls=""><span class="ct">&#127963; Sehensw&uuml;rdigkeiten</span></div>
+<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike"><span class="ct">&#128692; Wandern</span></div>
+<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost"><span class="ct">&#128682; Lost Places</span></div>
+<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap"><span class="ct">&#128048; UAP-Hotspots</span></div>
+<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur"><span class="ct">&#127795; Natur</span></div>
+<div class="filter-chip" data-cat="kulinarik" data-cls=""><span class="ct">&#127860; Kulinarik</span></div>
 </div>
 
 <button class="btn-search" id="btn-search" type="button" onclick="startSearch()">
@@ -547,7 +547,7 @@ var distHinweis = standort
 ? 'Der Nutzer reist von "' + standort + '". Sch\u00e4tze Distanz (km) und Autofahrtzeit (Minuten) von dort zu jedem Spot.'
 : 'Standort unbekannt \u2013 sch\u00e4tze Distanz (km) und Fahrzeit (min) vom Zentrum des Urlaubsorts.';
 
-var system = 'Du bist ein erfahrener Reiseguide und Geheimtipp-Experte. Antworte AUSSCHLIESSLICH mit validem JSON ohne Markdown-Backticks und ohne Text ausserhalb des JSON.';
+var system = 'Du bist ein erfahrener Reiseguide und Geheimtipp-Experte. WICHTIG: Antworte AUSSCHLIESSLICH mit reinem JSON. KEINE Markdown-Backticks (kein ```json), KEIN Text vor oder nach dem JSON. Nur das rohe JSON-Objekt, beginnend mit { und endend mit }.';
 
 var prompt =
 'Erstelle 8 bis 12 interessante Reise-Spots f\u00fcr das Ziel: "' + ort + '".\n\n' +
@@ -578,15 +578,33 @@ showError('API-Fehler: ' + (data.error.message || JSON.stringify(data.error)));
 return;
 }
 
+// Rohtext aus verschiedenen Antwortstrukturen holen
 var raw = '';
 if (data.content && data.content[0] && data.content[0].text) {
 raw = data.content[0].text;
+} else if (typeof data === 'string') {
+raw = data;
+} else if (data.text) {
+raw = data.text;
+} else if (data.completion) {
+raw = data.completion;
 }
-raw = raw.replace(/```json|```/g, '').trim();
+
+// Robustes JSON-Extrahieren: { ... } herausschneiden
+var jStart = raw.indexOf('{');
+var jEnd = raw.lastIndexOf('}');
+if (jStart >= 0 && jEnd > jStart) {
+raw = raw.substring(jStart, jEnd + 1);
+} else {
+raw = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+}
 
 var parsed;
 try { parsed = JSON.parse(raw); }
-catch(e) { showError('Antwort konnte nicht verarbeitet werden \u2013 bitte nochmal versuchen.'); return; }
+catch(e) {
+showError('JSON-Fehler: ' + e.message + ' | Rohtext: ' + (raw || JSON.stringify(data)).substring(0, 150));
+return;
+}
 
 currentSpots = parsed.spots || [];
 renderResults(parsed.destination || ort, standort);
