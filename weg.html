@@ -132,7 +132,6 @@ user-select: none;
 -webkit-user-select: none;
 -webkit-tap-highlight-color: transparent;
 }
-.filter-chip .ci { font-size: 0.95rem; line-height: 1; display: inline-block; }
 .filter-chip .ct { font-size: 0.8rem; display: inline-block; }
 
 .filter-chip.active { background: var(–gold); border-color: var(–gold); color: white; }
@@ -408,12 +407,12 @@ font-family: ‘DM Sans’, sans-serif;
 </div>
 
 <div class="filter-row" id="filter-row">
-<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls=""><span class="ct">&#127963; Sehensw&uuml;rdigkeiten</span></div>
-<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike"><span class="ct">&#128692; Wandern</span></div>
-<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost"><span class="ct">&#128682; Lost Places</span></div>
-<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap"><span class="ct">&#128048; UAP-Hotspots</span></div>
-<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur"><span class="ct">&#127795; Natur</span></div>
-<div class="filter-chip" data-cat="kulinarik" data-cls=""><span class="ct">&#127860; Kulinarik</span></div>
+<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls="">Sehensw&uuml;rdigkeiten</div>
+<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike">Wandern</div>
+<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost">Lost Places</div>
+<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap">UAP-Hotspots</div>
+<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur">Natur</div>
+<div class="filter-chip" data-cat="kulinarik" data-cls="">Kulinarik</div>
 </div>
 
 <button class="btn-search" id="btn-search" type="button" onclick="startSearch()">
@@ -550,21 +549,21 @@ var distHinweis = standort
 var system = 'Du bist ein erfahrener Reiseguide und Geheimtipp-Experte. WICHTIG: Antworte AUSSCHLIESSLICH mit reinem JSON. KEINE Markdown-Backticks (kein ```json), KEIN Text vor oder nach dem JSON. Nur das rohe JSON-Objekt, beginnend mit { und endend mit }.';
 
 var prompt =
-'Erstelle 8 bis 12 interessante Reise-Spots f\u00fcr das Ziel: "' + ort + '".\n\n' +
+'Erstelle 6 bis 8 interessante Reise-Spots f\u00fcr das Ziel: "' + ort + '".\n\n' +
 'Gew\u00fcnschte Kategorien: ' + catNames + '\n\n' + distHinweis + '\n\n' +
 'Richtlinien:\n' +
-'- Lost Places: echte oder sehr plausible verlassene Orte (Fabriken, Sanatorien, Kasernen, Hotels, Kirchen). Geschichte + Mythos + Zugangshinweis.\n' +
+'- Lost Places: verlassene Orte (Fabriken, Sanatorien, Kasernen, Hotels). Geschichte + Mythos.\n' +
 '- UAP-Hotspots: dokumentierte oder legend\u00e4re UFO/UAP-Sichtungen, Kraftorte, Ley-Linien. Sichtungsgeschichte + atmosph\u00e4rische Beschreibung.\n' +
 '- Wandern: konkreter Trail/Route, L\u00e4nge (km), H\u00f6henmeter, Schwierigkeitsgrad (leicht/mittel/schwer), Highlights.\n' +
 '- Sehenswürdigkeiten: kulturell oder historisch bedeutsam, kurze Geschichte.\n' +
 '- Natur: besondere Landschaft, Geologie, Flora/Fauna.\n' +
 '- Kulinarik: lokale Spezialit\u00e4t oder Restaurant-Empfehlung mit kurzem Kontext.\n\n' +
 'Gib als Antwort NUR dieses JSON zur\u00fcck (keine weiteren Texte):\n' +
-'{"destination":"Name des Reiseziels","spots":[{"id":"s1","name":"Ortsname","type":"lost-places","description":"2-4 S\u00e4tze","distanz_km":25,"fahrzeit_min":30,"besonderheit":"Ein pr\u00e4gnanter Highlight-Satz","tipp":"Praktischer Hinweis"}]}';
+'{"destination":"Name des Reiseziels","spots":[{"id":"s1","name":"Ortsname","type":"lost-places","description":"2-3 Saetze","distanz_km":25,"fahrzeit_min":30,"besonderheit":"Ein pr\u00e4gnanter Highlight-Satz","tipp":"Tipp"}]}';
 
 callApi({
 model: 'claude-haiku-4-5-20251001',
-max_tokens: 2500,
+max_tokens: 4000,
 system: system,
 messages: [{ role: 'user', content: prompt }]
 })
