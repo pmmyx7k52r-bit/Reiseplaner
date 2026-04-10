@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fernweh — Reiseplaner</title>
+<title>Fernweh &mdash; Reiseplaner</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -18,7 +18,8 @@
 –slate: #5a6672;
 –uap: #7b3fa0;
 –lost: #8b4513;
-–shadow: rgba(26,21,16,0.15);
+–red: #c0392b;
+–shadow: rgba(26,21,16,0.13);
 }
 
 - { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,228 +30,197 @@ background: var(–paper);
 color: var(–ink);
 min-height: 100vh;
 background-image:
-radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 50%),
-radial-gradient(ellipse at 80% 20%, rgba(74,103,65,0.06) 0%, transparent 40%);
+radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.07) 0%, transparent 50%),
+radial-gradient(ellipse at 80% 20%, rgba(74,103,65,0.05) 0%, transparent 40%);
 }
 
-/* HEADER */
 header {
-padding: 1.5rem 1.5rem 1rem;
+padding: 1.25rem 1.25rem 0;
 border-bottom: 1px solid rgba(201,168,76,0.3);
-display: flex;
-align-items: baseline;
-gap: 1rem;
-flex-wrap: wrap;
 }
 .logo {
 font-family: ‘Playfair Display’, serif;
-font-size: 2rem;
+font-size: 1.8rem;
 font-style: italic;
-color: var(–ink);
 letter-spacing: -0.02em;
+margin-bottom: 0.9rem;
 }
 .logo span { color: var(–gold); }
-.tagline {
-font-size: 0.72rem;
-font-weight: 300;
-color: var(–slate);
-letter-spacing: 0.12em;
-text-transform: uppercase;
-}
 
-/* SEARCH PANEL */
-.search-panel {
-max-width: 680px;
-margin: 2rem auto 0;
-padding: 0 1rem;
-}
-.search-card {
-background: white;
-border: 1px solid rgba(201,168,76,0.25);
-border-radius: 16px;
-padding: 1.5rem;
-box-shadow: 0 4px 32px var(–shadow);
-}
-.search-card h2 {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.25rem;
-margin-bottom: 1.25rem;
-}
-.field-row {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 0.75rem;
-margin-bottom: 1rem;
-}
-@media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
-
-.field { display: flex; flex-direction: column; gap: 0.35rem; }
-
-label {
-font-size: 0.7rem;
-font-weight: 500;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(–slate);
-}
-input[type=“text”] {
-font-family: ‘DM Sans’, sans-serif;
-font-size: 1rem;
-padding: 0.6rem 0.85rem;
-border: 1.5px solid var(–cream);
-border-radius: 10px;
-background: var(–paper);
-color: var(–ink);
-transition: border-color 0.2s;
-outline: none;
--webkit-appearance: none;
-}
-input[type=“text”]:focus { border-color: var(–gold); background: white; }
-
-/* FILTER CHIPS */
-.filter-row {
-display: flex;
-gap: 0.5rem;
-flex-wrap: wrap;
-margin-bottom: 1.25rem;
-margin-top: 0.25rem;
-}
-.filter-chip {
-display: inline-flex;
-align-items: center;
-gap: 0.3rem;
-padding: 0.35rem 0.7rem;
-border-radius: 20px;
-border: 1.5px solid var(–cream);
-background: var(–paper);
-cursor: pointer;
-color: var(–slate);
-font-family: ‘DM Sans’, sans-serif;
-font-weight: 500;
-transition: all 0.18s;
-user-select: none;
--webkit-user-select: none;
--webkit-tap-highlight-color: transparent;
-}
-.filter-chip .ct { font-size: 0.8rem; display: inline-block; }
-
-.filter-chip.active { background: var(–gold); border-color: var(–gold); color: white; }
-.filter-chip.active.c-uap { background: var(–uap); border-color: var(–uap); }
-.filter-chip.active.c-lost { background: var(–lost); border-color: var(–lost); }
-.filter-chip.active.c-hike { background: var(–moss); border-color: var(–moss); }
-.filter-chip.active.c-natur { background: #2d8a5e; border-color: #2d8a5e; }
-
-/* SEARCH BUTTON */
-.btn-search {
-width: 100%;
-font-family: ‘DM Sans’, sans-serif;
-font-size: 1rem;
-font-weight: 500;
-padding: 0.8rem;
-border: none;
-border-radius: 12px;
-background: var(–ink);
-color: var(–paper);
-cursor: pointer;
-letter-spacing: 0.03em;
-transition: background 0.2s, color 0.2s;
--webkit-appearance: none;
-}
-.btn-search:hover { background: var(–gold); color: var(–ink); }
-.btn-search:active { opacity: 0.85; }
-.btn-search:disabled { opacity: 0.45; cursor: not-allowed; }
-
-/* ERROR */
-#error-container { max-width: 680px; margin: 0 auto; padding: 0 1rem; }
-.error-box {
-background: #fff5f5;
-border: 1px solid #fca5a5;
-border-radius: 10px;
-padding: 0.85rem 1rem;
-font-size: 0.85rem;
-color: #991b1b;
-margin-top: 0.75rem;
-}
-
-/* LOADING */
-.loading { text-align: center; padding: 3rem 1rem; display: none; }
-.spinner {
-width: 38px; height: 38px;
-border: 3px solid var(–cream);
-border-top-color: var(–gold);
-border-radius: 50%;
-animation: spin 0.85s linear infinite;
-margin: 0 auto 1rem;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading p { font-size: 0.88rem; color: var(–slate); font-style: italic; }
-
-/* RESULTS */
-#results {
-max-width: 960px;
-margin: 2rem auto 1rem;
-padding: 0 1rem;
-display: none;
-}
-.results-header {
-display: flex;
-align-items: baseline;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 0.5rem;
-margin-bottom: 1.25rem;
-}
-.results-title {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.4rem;
-font-style: italic;
-}
-.results-meta { font-size: 0.78rem; color: var(–slate); margin-top: 0.1rem; }
-
-.btn-save-all {
+.tabs { display: flex; gap: 0; margin-bottom: -1px; }
+.tab {
 font-family: ‘DM Sans’, sans-serif;
 font-size: 0.78rem;
 font-weight: 500;
-padding: 0.38rem 0.85rem;
-border: 1.5px solid var(–gold);
-border-radius: 8px;
-background: transparent;
-color: var(–gold);
+letter-spacing: 0.05em;
+text-transform: uppercase;
+padding: 0.5rem 1rem;
+border: 1px solid transparent;
+border-bottom: none;
+border-radius: 8px 8px 0 0;
 cursor: pointer;
-transition: all 0.18s;
+color: var(–slate);
+background: transparent;
+transition: all 0.15s;
+-webkit-appearance: none;
+-webkit-tap-highlight-color: transparent;
+}
+.tab.active { background: var(–paper); border-color: rgba(201,168,76,0.3); color: var(–ink); font-weight: 600; }
+.tab .bdg {
+display: inline-block;
+background: var(–gold); color: white;
+font-size: 0.6rem; font-weight: 700;
+padding: 0.08rem 0.35rem; border-radius: 9px;
+margin-left: 0.3rem; vertical-align: middle;
+}
+
+.page { display: none; padding: 1.25rem 1rem 4rem; max-width: 720px; margin: 0 auto; }
+.page.active { display: block; }
+
+/* SEARCH CARD */
+.search-card {
+background: white;
+border: 1px solid rgba(201,168,76,0.25);
+border-radius: 14px;
+padding: 1.35rem;
+box-shadow: 0 3px 24px var(–shadow);
+margin-bottom: 1.25rem;
+}
+.search-card h2 { font-family: ‘Playfair Display’, serif; font-size: 1.15rem; margin-bottom: 1.1rem; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-bottom: 0.9rem; }
+@media (max-width: 440px) { .field-row { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; gap: 0.3rem; }
+
+label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(–slate); }
+
+input[type=“text”] {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 1rem;
+padding: 0.55rem 0.8rem;
+border: 1.5px solid var(–cream);
+border-radius: 9px;
+background: var(–paper);
+color: var(–ink);
+outline: none;
+-webkit-appearance: none;
+transition: border-color 0.18s;
+}
+input[type=“text”]:focus { border-color: var(–gold); background: white; }
+
+/* DESTINATION CONFIRM BOX */
+.dest-confirm {
+display: none;
+background: rgba(201,168,76,0.08);
+border: 1px solid rgba(201,168,76,0.3);
+border-radius: 9px;
+padding: 0.65rem 0.9rem;
+font-size: 0.82rem;
+color: var(–ink);
+margin-bottom: 0.9rem;
+line-height: 1.45;
+}
+.dest-confirm strong { color: var(–gold); }
+
+/* FILTER CHIPS */
+.filter-row { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.chip {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.78rem; font-weight: 500;
+padding: 0.32rem 0.7rem;
+border-radius: 20px;
+border: 1.5px solid var(–cream);
+background: var(–paper); color: var(–slate);
+cursor: pointer;
+transition: all 0.15s;
+user-select: none; -webkit-user-select: none;
+-webkit-tap-highlight-color: transparent;
 -webkit-appearance: none;
 }
-.btn-save-all:hover { background: var(–gold); color: white; }
+.chip.on { background: var(–gold); border-color: var(–gold); color: white; }
+.chip.on.c-hike { background: var(–moss); border-color: var(–moss); }
+.chip.on.c-lost { background: var(–lost); border-color: var(–lost); }
+.chip.on.c-uap { background: var(–uap); border-color: var(–uap); }
+.chip.on.c-natur { background: #2d8a5e; border-color: #2d8a5e; }
+
+/* BUTTONS */
+.btn-primary {
+width: 100%; font-family: ‘DM Sans’, sans-serif;
+font-size: 0.95rem; font-weight: 500;
+padding: 0.75rem; border: none; border-radius: 11px;
+background: var(–ink); color: var(–paper);
+cursor: pointer; letter-spacing: 0.03em;
+transition: background 0.18s, color 0.18s;
+-webkit-appearance: none; -webkit-tap-highlight-color: transparent;
+}
+.btn-primary:hover { background: var(–gold); color: var(–ink); }
+.btn-primary:active { opacity: 0.8; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-sm {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.73rem; font-weight: 500;
+padding: 0.32rem 0.75rem;
+border-radius: 7px; border: 1.5px solid var(–cream);
+background: white; color: var(–slate);
+cursor: pointer; transition: all 0.15s;
+-webkit-appearance: none; -webkit-tap-highlight-color: transparent;
+}
+.btn-sm.gold { border-color: var(–gold); color: var(–gold); }
+.btn-sm.gold:hover, .btn-sm.gold.on { background: var(–gold); color: white; border-color: var(–gold); }
+.btn-sm.moss { border-color: var(–moss); color: var(–moss); }
+.btn-sm.moss:hover, .btn-sm.moss.on { background: var(–moss); color: white; border-color: var(–moss); }
+.btn-sm.red { border-color: var(–red); color: var(–red); }
+.btn-sm.red:hover { background: var(–red); color: white; border-color: var(–red); }
+.btn-sm.rust { border-color: var(–rust); color: var(–rust); }
+.btn-sm.rust:hover { background: var(–rust); color: white; border-color: var(–rust); }
+.btn-sm:active { opacity: 0.75; }
+
+/* ERROR / INFO */
+.error-box {
+background: #fff5f5; border: 1px solid #fca5a5;
+border-radius: 9px; padding: 0.8rem 1rem;
+font-size: 0.82rem; color: #991b1b; margin-top: 0.75rem;
+}
+
+/* LOADING */
+.loading { text-align: center; padding: 2.5rem 1rem; display: none; }
+.spinner {
+width: 36px; height: 36px;
+border: 3px solid var(–cream); border-top-color: var(–gold);
+border-radius: 50%; animation: spin 0.85s linear infinite;
+margin: 0 auto 0.9rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { font-size: 0.85rem; color: var(–slate); font-style: italic; }
+
+/* RESULTS */
+.results-hdr {
+display: flex; align-items: baseline;
+justify-content: space-between; flex-wrap: wrap;
+gap: 0.5rem; margin-bottom: 1.1rem;
+}
+.results-title { font-family: ‘Playfair Display’, serif; font-size: 1.3rem; font-style: italic; }
+.results-meta { font-size: 0.76rem; color: var(–slate); margin-top: 0.1rem; }
 
 /* SPOT CARDS */
-.spots-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-gap: 1rem;
-}
+.spots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.9rem; }
 .spot-card {
-background: white;
-border: 1px solid rgba(201,168,76,0.2);
-border-radius: 14px;
-overflow: hidden;
-box-shadow: 0 2px 14px var(–shadow);
-transition: transform 0.2s, box-shadow 0.2s;
+background: white; border: 1px solid rgba(201,168,76,0.2);
+border-radius: 13px; overflow: hidden;
+box-shadow: 0 2px 12px var(–shadow);
+transition: transform 0.18s, box-shadow 0.18s, opacity 0.25s;
 position: relative;
 }
-.spot-card:hover { transform: translateY(-2px); box-shadow: 0 5px 24px var(–shadow); }
-.spot-card.dismissed { opacity: 0.28; pointer-events: none; }
+.spot-card:hover { transform: translateY(-2px); box-shadow: 0 5px 20px var(–shadow); }
+.spot-card.dismissed { opacity: 0; pointer-events: none; height: 0; overflow: hidden; margin: 0; }
 .spot-card.visited { border-color: var(–moss); }
 .spot-card.visited::after {
 content: ‘\2713 Besucht’;
-position: absolute;
-top: 0.55rem; right: 0.55rem;
-background: var(–moss);
-color: white;
-font-size: 0.66rem;
-font-weight: 600;
-padding: 0.18rem 0.5rem;
-border-radius: 5px;
-letter-spacing: 0.04em;
+position: absolute; top: 0.5rem; right: 0.5rem;
+background: var(–moss); color: white;
+font-size: 0.63rem; font-weight: 700;
+padding: 0.15rem 0.45rem; border-radius: 5px;
 }
 
 .type-bar { height: 4px; }
@@ -261,19 +231,12 @@ letter-spacing: 0.04em;
 .type-bar.nature { background: #2d8a5e; }
 .type-bar.gold { background: var(–gold); }
 
-.spot-body { padding: 1rem 1rem 0.75rem; }
-
+.spot-body { padding: 0.9rem 0.9rem 0.65rem; }
 .spot-badge {
-display: inline-block;
-font-size: 0.66rem;
-font-weight: 600;
-letter-spacing: 0.07em;
-text-transform: uppercase;
-padding: 0.18rem 0.5rem;
-border-radius: 4px;
-margin-bottom: 0.5rem;
-background: var(–cream);
-color: var(–slate);
+display: inline-block; font-size: 0.63rem; font-weight: 700;
+letter-spacing: 0.07em; text-transform: uppercase;
+padding: 0.15rem 0.45rem; border-radius: 4px; margin-bottom: 0.45rem;
+background: var(–cream); color: var(–slate);
 }
 .spot-badge.culture { background: rgba(184,92,56,0.1); color: var(–rust); }
 .spot-badge.hike { background: rgba(74,103,65,0.1); color: var(–moss); }
@@ -281,105 +244,37 @@ color: var(–slate);
 .spot-badge.uap { background: rgba(123,63,160,0.1); color: var(–uap); }
 .spot-badge.nature { background: rgba(45,138,94,0.1); color: #2d8a5e; }
 
-.spot-name {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.05rem;
-line-height: 1.25;
-margin-bottom: 0.45rem;
-}
-.spot-desc {
-font-size: 0.82rem;
-line-height: 1.55;
-color: #555;
-margin-bottom: 0.7rem;
-}
-.spot-highlight { font-size: 0.76rem; color: var(–gold); font-weight: 500; margin-bottom: 0.35rem; }
-.spot-tipp { font-size: 0.74rem; color: var(–slate); font-style: italic; margin-bottom: 0.7rem; }
+.spot-name { font-family: ‘Playfair Display’, serif; font-size: 1rem; line-height: 1.25; margin-bottom: 0.4rem; }
+.spot-country { font-size: 0.68rem; color: var(–slate); margin-bottom: 0.35rem; font-style: italic; }
+.spot-desc { font-size: 0.8rem; line-height: 1.52; color: #555; margin-bottom: 0.6rem; }
+.spot-hl { font-size: 0.74rem; color: var(–gold); font-weight: 500; margin-bottom: 0.3rem; }
+.spot-tip { font-size: 0.72rem; color: var(–slate); font-style: italic; margin-bottom: 0.6rem; }
+.spot-meta { display: flex; gap: 0.9rem; font-size: 0.72rem; color: var(–slate); padding-top: 0.6rem; border-top: 1px solid var(–cream); flex-wrap: wrap; }
+.spot-actions { display: flex; gap: 0.35rem; padding: 0.55rem 0.9rem; background: var(–paper); border-top: 1px solid var(–cream); }
 
-.spot-meta {
-display: flex;
-gap: 1rem;
-font-size: 0.74rem;
-color: var(–slate);
-padding-top: 0.65rem;
-border-top: 1px solid var(–cream);
-flex-wrap: wrap;
-}
+/* TRIPS PAGE */
+.trips-empty { text-align: center; padding: 3rem 1rem; color: var(–slate); font-style: italic; font-size: 0.9rem; }
+.trip-card { background: white; border: 1px solid rgba(201,168,76,0.2); border-radius: 13px; overflow: hidden; box-shadow: 0 2px 12px var(–shadow); margin-bottom: 1rem; }
+.trip-header { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1rem; cursor: pointer; gap: 0.75rem; }
+.trip-header:hover { background: rgba(201,168,76,0.04); }
+.trip-name { font-family: ‘Playfair Display’, serif; font-size: 1.05rem; font-style: italic; flex: 1; }
+.trip-meta { font-size: 0.72rem; color: var(–slate); }
+.trip-chevron { font-size: 0.8rem; color: var(–slate); transition: transform 0.2s; }
+.trip-card.open .trip-chevron { transform: rotate(180deg); }
+.trip-spots { display: none; border-top: 1px solid var(–cream); }
+.trip-card.open .trip-spots { display: block; }
+.trip-spot-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1rem; border-bottom: 1px solid var(–cream); font-size: 0.83rem; flex-wrap: wrap; }
+.trip-spot-row:last-child { border-bottom: none; }
+.tsr-name { flex: 1; min-width: 100px; font-weight: 500; }
+.tsr-type { font-size: 0.68rem; color: var(–slate); }
+.tsr-vis { font-size: 0.72rem; color: var(–moss); font-weight: 500; }
+.trip-footer { display: flex; gap: 0.5rem; padding: 0.7rem 1rem; border-top: 1px solid var(–cream); background: var(–paper); }
 
-.spot-actions {
-display: flex;
-gap: 0.4rem;
-padding: 0.6rem 1rem;
-background: var(–paper);
-border-top: 1px solid var(–cream);
-}
-.btn-act {
-flex: 1;
-font-family: ‘DM Sans’, sans-serif;
-font-size: 0.74rem;
-font-weight: 500;
-padding: 0.42rem 0.25rem;
-border-radius: 8px;
-border: 1.5px solid var(–cream);
-background: white;
-cursor: pointer;
-color: var(–slate);
-transition: all 0.15s;
-text-align: center;
--webkit-appearance: none;
--webkit-tap-highlight-color: transparent;
-}
-.btn-act:active { opacity: 0.75; }
-.btn-act.save { border-color: var(–gold); color: var(–gold); }
-.btn-act.save:hover,
-.btn-act.save.on { background: var(–gold); color: white; border-color: var(–gold); }
-.btn-act.vis { border-color: var(–moss); color: var(–moss); }
-.btn-act.vis:hover,
-.btn-act.vis.on { background: var(–moss); color: white; border-color: var(–moss); }
-.btn-act.dis:hover { border-color: var(–rust); color: var(–rust); }
-
-/* SAVED LIST */
-.saved-section {
-max-width: 960px;
-margin: 0 auto 4rem;
-padding: 0 1rem;
-display: none;
-}
-.saved-section h3 {
-font-family: ‘Playfair Display’, serif;
-font-size: 1.1rem;
-font-style: italic;
-margin-bottom: 0.85rem;
-}
-.saved-list { display: flex; flex-direction: column; gap: 0.45rem; }
-.saved-item {
-display: flex;
-align-items: center;
-gap: 0.65rem;
-background: white;
-border: 1px solid var(–cream);
-border-radius: 10px;
-padding: 0.6rem 0.9rem;
-font-size: 0.85rem;
-flex-wrap: wrap;
-}
-.s-name { font-weight: 500; flex: 1; min-width: 100px; }
-.s-type { font-size: 0.7rem; color: var(–slate); }
-.s-dist { font-size: 0.7rem; color: var(–slate); }
-.s-vis { font-size: 0.75rem; color: var(–moss); font-weight: 500; }
-.s-del {
-font-size: 0.72rem;
-padding: 0.18rem 0.45rem;
-border: 1px solid var(–cream);
-border-radius: 5px;
-background: transparent;
-cursor: pointer;
-color: var(–slate);
-font-family: ‘DM Sans’, sans-serif;
--webkit-appearance: none;
-}
-
-.divider { height: 1px; background: var(–cream); margin: 1.5rem auto; max-width: 960px; }
+/* BLACKLIST */
+.bl-item { display: flex; align-items: center; gap: 0.6rem; background: white; border: 1px solid var(–cream); border-radius: 9px; padding: 0.5rem 0.75rem; font-size: 0.82rem; margin-bottom: 0.4rem; }
+.bl-name { flex: 1; }
+.bl-dest-lbl { font-size: 0.68rem; color: var(–slate); }
+.bl-group-hdr { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(–slate); margin: 1rem 0 0.5rem; }
 </style>
 
 </head>
@@ -387,83 +282,96 @@ font-family: ‘DM Sans’, sans-serif;
 
 <header>
 <div class="logo">Fern<span>weh</span></div>
-<div class="tagline">Dein pers&ouml;nlicher Reiseplaner</div>
+<div class="tabs">
+<button class="tab active" type="button" onclick="showPage('page-search')">Suche</button>
+<button class="tab" type="button" onclick="showPage('page-trips')">Meine Reisen <span class="bdg" id="bdg-trips" style="display:none">0</span></button>
+<button class="tab" type="button" onclick="showPage('page-bl')">Abgelehnt <span class="bdg" id="bdg-bl" style="display:none">0</span></button>
+</div>
 </header>
 
-<div class="search-panel">
+<!-- PAGE: SUCHE -->
+
+<div class="page active" id="page-search">
 <div class="search-card">
 <h2>Wohin geht die Reise?</h2>
 
 ```
 <div class="field-row">
 <div class="field">
-<label>Urlaubsort / Region</label>
-<input type="text" id="inp-ort" placeholder="z.B. Schottland, Highlands" autocomplete="off" />
+<label>Reiseziel / Region</label>
+<input type="text" id="inp-ort" placeholder="z.B. Sinaia, Karpaten, Bretagne" autocomplete="off" />
 </div>
 <div class="field">
-<label>Dein Heimatstandort</label>
-<input type="text" id="inp-von" placeholder="z.B. Wien, M&uuml;nchen" autocomplete="off" />
+<label>&Uuml;bernachtungsort</label>
+<input type="text" id="inp-quartier" placeholder="z.B. Bu&#537;teni, Bran ..." autocomplete="off" />
 </div>
 </div>
+
+<div class="dest-confirm" id="dest-confirm"></div>
 
 <div class="filter-row" id="filter-row">
-<div class="filter-chip active" data-cat="sehenswuerdigkeiten" data-cls="">Sehensw&uuml;rdigkeiten</div>
-<div class="filter-chip active c-hike" data-cat="wandern" data-cls="c-hike">Wandern</div>
-<div class="filter-chip active c-lost" data-cat="lost-places" data-cls="c-lost">Lost Places</div>
-<div class="filter-chip active c-uap" data-cat="uap" data-cls="c-uap">UAP-Hotspots</div>
-<div class="filter-chip active c-natur" data-cat="natur" data-cls="c-natur">Natur</div>
-<div class="filter-chip" data-cat="kulinarik" data-cls="">Kulinarik</div>
+<div class="chip on" data-cat="sehenswuerdigkeiten" data-cls="">Sehensw&uuml;rdigkeiten</div>
+<div class="chip on c-hike" data-cat="wandern" data-cls="c-hike">Wandern</div>
+<div class="chip on c-lost" data-cat="lost-places" data-cls="c-lost">Lost Places</div>
+<div class="chip on c-uap" data-cat="uap" data-cls="c-uap">UAP-Hotspots</div>
+<div class="chip on c-natur" data-cat="natur" data-cls="c-natur">Natur</div>
+<div class="chip" data-cat="kulinarik" data-cls="">Kulinarik</div>
 </div>
 
-<button class="btn-search" id="btn-search" type="button" onclick="startSearch()">
-&#128269;&nbsp; Spots entdecken
+<button class="btn-primary" id="btn-search" type="button" onclick="startSearch()">
+Spots entdecken
 </button>
+<div id="error-box"></div>
 ```
 
 </div>
-</div>
-
-<div id="error-container"></div>
 
 <div class="loading" id="loading">
 <div class="spinner"></div>
-<p id="loading-text">Erkunde verlassene Orte und Wanderpfade &hellip;</p>
+<p id="loading-text">Erkunde Wanderpfade und versteckte Orte &hellip;</p>
 </div>
 
-<div id="results">
-<div class="results-header">
+<div id="results" style="display:none">
+<div class="results-hdr">
 <div>
 <div class="results-title" id="results-title"></div>
 <div class="results-meta" id="results-meta"></div>
 </div>
-<button class="btn-save-all" type="button" onclick="saveAll()">Alle speichern</button>
+<button class="btn-sm gold" type="button" id="btn-save-trip" onclick="saveCurrentTrip()" style="display:none">
+Reise speichern
+</button>
 </div>
 <div class="spots-grid" id="spots-grid"></div>
 </div>
+</div>
 
-<div class="divider" id="saved-divider" style="display:none"></div>
+<!-- PAGE: MEINE REISEN -->
 
-<div class="saved-section" id="saved-section">
-<h3>&#128203;&nbsp;Meine gespeicherten Orte</h3>
-<div class="saved-list" id="saved-list"></div>
+<div class="page" id="page-trips">
+<div id="trips-list"></div>
+</div>
+
+<!-- PAGE: ABGELEHNT -->
+
+<div class="page" id="page-bl">
+<p style="font-size:0.82rem;color:var(--slate);margin-bottom:1rem;line-height:1.5;">
+Abgelehnte Spots werden bei neuen Suchen f&uuml;r dasselbe Ziel &uuml;bersprungen.
+</p>
+<div id="bl-list"></div>
+<div id="bl-clear-wrap" style="margin-top:0.75rem;display:none">
+<button class="btn-sm rust" type="button" onclick="clearBL()">Alle Ablehnungen zur&uuml;cksetzen</button>
+</div>
 </div>
 
 <script>
-/* =========================================================
-KONFIGURATION
-========================================================= */
-var WORKER_URL = 'https://finnhub-proxy.zzbuk.workers.dev';
+/* =================================================================
+CONFIG
+================================================================= */
+var WORKER = 'https://finnhub-proxy.zzbuk.workers.dev';
 
-/* =========================================================
-STATE
-========================================================= */
-var activeCategories = ['sehenswuerdigkeiten','wandern','lost-places','uap','natur'];
-var currentSpots = [];
-var savedSpots = JSON.parse(localStorage.getItem('fernweh_saved') || '[]');
-
-/* =========================================================
+/* =================================================================
 TYPE CONFIG
-========================================================= */
+================================================================= */
 var TYPE = {
 'sehenswuerdigkeiten': { label: 'Sehenswürdigkeit', bar: 'culture', badge: 'culture' },
 'wandern': { label: 'Wandertipp', bar: 'hike', badge: 'hike' },
@@ -473,62 +381,114 @@ var TYPE = {
 'kulinarik': { label: 'Kulinarik', bar: 'gold', badge: '' }
 };
 
-/* =========================================================
-FILTER CHIPS
-========================================================= */
-document.getElementById('filter-row').addEventListener('click', function(e) {
-var chip = e.target.closest('.filter-chip');
-if (!chip) return;
-var cat = chip.dataset.cat;
-var cls = chip.dataset.cls;
-if (chip.classList.contains('active')) {
-chip.classList.remove('active');
-if (cls) chip.classList.remove(cls);
-activeCategories = activeCategories.filter(function(c) { return c !== cat; });
-} else {
-chip.classList.add('active');
-if (cls) chip.classList.add(cls);
-activeCategories.push(cat);
-}
-});
+/* =================================================================
+STATE
+================================================================= */
+var activeCats = ['sehenswuerdigkeiten','wandern','lost-places','uap','natur'];
+var curSpots = [];
+var curDest = ''; // canonical destination name returned by AI
+var curQuartier = '';
 
-/* =========================================================
-LOADING TEXT ROTATION
-========================================================= */
+var trips = JSON.parse(localStorage.getItem('fw_trips') || '[]');
+var blacklist = JSON.parse(localStorage.getItem('fw_blacklist') || '[]');
+
+/* =================================================================
+LOADING TEXTS
+================================================================= */
 var loadingTexts = [
+'Validiere Reiseziel und Nachbarl\u00e4nder \u2026',
 'Durchst\u00f6bere verlassene Orte und Wanderpfade \u2026',
 'Pr\u00fcfe UAP-Sichtungsberichte und Kraftorte \u2026',
-'Kalkuliere Fahrzeiten und Distanzen \u2026',
-'Sammle Geheimtipps und versteckte Spots \u2026'
+'Kalkuliere Fahrzeiten ab deinem Quartier \u2026'
 ];
 var loadingInterval;
 
-/* =========================================================
-API CALL via Cloudflare Worker
-========================================================= */
+/* =================================================================
+TABS
+================================================================= */
+function showPage(id) {
+document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+document.getElementById(id).classList.add('active');
+var map = { 'page-search': 0, 'page-trips': 1, 'page-bl': 2 };
+document.querySelectorAll('.tab')[map[id]].classList.add('active');
+if (id === 'page-trips') renderTrips();
+if (id === 'page-bl') renderBL();
+}
+
+/* =================================================================
+FILTER CHIPS
+================================================================= */
+document.getElementById('filter-row').addEventListener('click', function(e) {
+var chip = e.target.closest('.chip');
+if (!chip) return;
+var cat = chip.dataset.cat, cls = chip.dataset.cls;
+if (chip.classList.contains('on')) {
+chip.classList.remove('on');
+if (cls) chip.classList.remove(cls);
+activeCats = activeCats.filter(function(c) { return c !== cat; });
+} else {
+chip.classList.add('on');
+if (cls) chip.classList.add(cls);
+activeCats.push(cat);
+}
+});
+
+/* =================================================================
+API CALL
+The worker sends anthropic-beta: web-search which can cause tool_use
+blocks instead of plain text. We extract text from all block types.
+================================================================= */
 function callApi(payload) {
-return fetch(WORKER_URL, {
+return fetch(WORKER, {
 method: 'POST',
 headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify(payload)
-}).then(function(r) {
+})
+.then(function(r) {
 if (!r.ok) throw new Error('HTTP ' + r.status);
 return r.json();
+})
+.then(function(data) {
+// Extract text from response, handling tool_use / web_search blocks
+if (data.error) return data; // let caller handle
+var text = '';
+if (data.content && Array.isArray(data.content)) {
+data.content.forEach(function(block) {
+if (block.type === 'text' && block.text) {
+text += block.text;
+}
+// tool_result blocks may contain text inside
+if (block.type === 'tool_result' && Array.isArray(block.content)) {
+block.content.forEach(function(inner) {
+if (inner.type === 'text') text += inner.text;
+});
+}
+});
+} else if (data.text) {
+text = data.text;
+} else if (typeof data === 'string') {
+text = data;
+}
+data._extractedText = text;
+return data;
 });
 }
 
-/* =========================================================
+/* =================================================================
 SEARCH
-========================================================= */
+================================================================= */
 function startSearch() {
 var ort = document.getElementById('inp-ort').value.trim();
-var standort = document.getElementById('inp-von').value.trim();
+var quartier = document.getElementById('inp-quartier').value.trim();
 showError('');
 
-if (!ort) { showError('Bitte einen Urlaubsort eingeben.'); return; }
-if (activeCategories.length === 0) { showError('Bitte mindestens eine Kategorie w\u00e4hlen.'); return; }
+if (!ort) { showError('Bitte ein Reiseziel eingeben.'); return; }
+if (activeCats.length === 0) { showError('Bitte mindestens eine Kategorie w\u00e4hlen.'); return; }
 
 document.getElementById('results').style.display = 'none';
+document.getElementById('btn-save-trip').style.display = 'none';
+document.getElementById('dest-confirm').style.display = 'none';
 document.getElementById('loading').style.display = 'block';
 document.getElementById('btn-search').disabled = true;
 
@@ -538,28 +498,43 @@ li = (li + 1) % loadingTexts.length;
 document.getElementById('loading-text').textContent = loadingTexts[li];
 }, 1900);
 
-var catNames = activeCategories.map(function(c) {
-return TYPE[c] ? TYPE[c].label : c;
-}).join(', ');
+var catNames = activeCats.map(function(c) { return TYPE[c] ? TYPE[c].label : c; }).join(', ');
 
-var distHinweis = standort
-? 'Der Nutzer reist von "' + standort + '". Sch\u00e4tze Distanz (km) und Autofahrtzeit (Minuten) von dort zu jedem Spot.'
-: 'Standort unbekannt \u2013 sch\u00e4tze Distanz (km) und Fahrzeit (min) vom Zentrum des Urlaubsorts.';
+// Build blacklist hint for this region
+var blNames = blacklist
+.filter(function(b) { return normDest(b.dest) === normDest(ort); })
+.map(function(b) { return b.name; });
+var blHint = blNames.length > 0
+? 'Diese Orte wurden vom Nutzer abgelehnt, NICHT nennen: ' + blNames.join(', ') + '.\n'
+: '';
 
-var system = 'Du bist ein erfahrener Reiseguide und Geheimtipp-Experte. WICHTIG: Antworte AUSSCHLIESSLICH mit reinem JSON. KEINE Markdown-Backticks (kein ```json), KEIN Text vor oder nach dem JSON. Nur das rohe JSON-Objekt, beginnend mit { und endend mit }.';
+var distHint = quartier
+? 'Der Nutzer \u00fcbernachtet in "' + quartier + '". Berechne Distanz (km) und Autofahrtzeit (Minuten) von dort zu jedem Spot.'
+: 'Kein \u00dcbernachtungsort angegeben. Sch\u00e4tze Distanzen vom Zentrum des Reiseziels.';
+
+var system = 'Du bist ein Reiseguide-Experte. Antworte AUSSCHLIESSLICH mit einem reinen JSON-Objekt. KEINE Markdown-Backticks, KEIN Text vor oder nach dem JSON-Objekt.';
 
 var prompt =
-'Erstelle 6 bis 8 interessante Reise-Spots f\u00fcr das Ziel: "' + ort + '".\n\n' +
-'Gew\u00fcnschte Kategorien: ' + catNames + '\n\n' + distHinweis + '\n\n' +
-'Richtlinien:\n' +
-'- Lost Places: verlassene Orte (Fabriken, Sanatorien, Kasernen, Hotels). Geschichte + Mythos.\n' +
-'- UAP-Hotspots: dokumentierte oder legend\u00e4re UFO/UAP-Sichtungen, Kraftorte, Ley-Linien. Sichtungsgeschichte + atmosph\u00e4rische Beschreibung.\n' +
-'- Wandern: konkreter Trail/Route, L\u00e4nge (km), H\u00f6henmeter, Schwierigkeitsgrad (leicht/mittel/schwer), Highlights.\n' +
-'- Sehenswürdigkeiten: kulturell oder historisch bedeutsam, kurze Geschichte.\n' +
-'- Natur: besondere Landschaft, Geologie, Flora/Fauna.\n' +
-'- Kulinarik: lokale Spezialit\u00e4t oder Restaurant-Empfehlung mit kurzem Kontext.\n\n' +
-'Gib als Antwort NUR dieses JSON zur\u00fcck (keine weiteren Texte):\n' +
-'{"destination":"Name des Reiseziels","spots":[{"id":"s1","name":"Ortsname","type":"lost-places","description":"2-3 Saetze","distanz_km":25,"fahrzeit_min":30,"besonderheit":"Ein pr\u00e4gnanter Highlight-Satz","tipp":"Tipp"}]}';
+'Reiseziel des Nutzers: "' + ort + '"\n\n' +
+
+'SCHRITT 1 - Ortsvalidierung:\n' +
+'Identifiziere den genauen Ort eindeutig. Korrigiere Tippfehler und verwende den offiziellen Namen.\n' +
+'Wenn der Ort an einer Grenze liegt (innerhalb 80km zu einem Nachbarland), berücksichtige auch Spots im Nachbarland.\n\n' +
+
+'SCHRITT 2 - Spots generieren:\n' +
+'Erstelle 6 bis 8 interessante Spots.\n' +
+'Kategorien: ' + catNames + '\n' +
+distHint + '\n' +
+blHint +
+'Regeln:\n' +
+'- Lost Places: verlassene Orte (Fabriken, Sanatorien, Kasernen, Hotels) mit Geschichte und Mythos.\n' +
+'- UAP-Hotspots: Orte mit UAP-Sichtungen, Kraftorte, Ley-Linien, mystische Ph\u00e4nomene.\n' +
+'- Wandern: Trail-Name, L\u00e4nge km, Schwierigkeit (leicht/mittel/schwer), Highlights.\n' +
+'- Beschreibungen: 2-3 kurze S\u00e4tze.\n' +
+'- Gib bei jedem Spot auch das Land an (country-Feld), besonders wenn Nachbarl\u00e4nder einbezogen werden.\n\n' +
+
+'Antworte NUR mit diesem JSON (kein anderer Text):\n' +
+'{"destination":"Offizieller Ortsname","region":"Region/Land","border_note":"Leer oder z.B. Auch Spots aus Bulgarien (Grenzn\u00e4he)","spots":[{"id":"s1","name":"Name","country":"Rum\u00e4nien","type":"wandern","description":"Text","distanz_km":12,"fahrzeit_min":18,"besonderheit":"Highlight","tipp":"Tipp"}]}';
 
 callApi({
 model: 'claude-haiku-4-5-20251001',
@@ -577,36 +552,34 @@ showError('API-Fehler: ' + (data.error.message || JSON.stringify(data.error)));
 return;
 }
 
-// Rohtext aus verschiedenen Antwortstrukturen holen
-var raw = '';
-if (data.content && data.content[0] && data.content[0].text) {
-raw = data.content[0].text;
-} else if (typeof data === 'string') {
-raw = data;
-} else if (data.text) {
-raw = data.text;
-} else if (data.completion) {
-raw = data.completion;
-}
+var raw = data._extractedText || '';
+if (!raw) { showError('Leere Antwort vom Server.'); return; }
 
-// Robustes JSON-Extrahieren: { ... } herausschneiden
-var jStart = raw.indexOf('{');
-var jEnd = raw.lastIndexOf('}');
-if (jStart >= 0 && jEnd > jStart) {
-raw = raw.substring(jStart, jEnd + 1);
-} else {
-raw = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
-}
+// Extract JSON object robustly
+var j1 = raw.indexOf('{'), j2 = raw.lastIndexOf('}');
+if (j1 >= 0 && j2 > j1) raw = raw.substring(j1, j2 + 1);
+else raw = raw.replace(/```json/gi,'').replace(/```/g,'').trim();
 
 var parsed;
 try { parsed = JSON.parse(raw); }
-catch(e) {
-showError('JSON-Fehler: ' + e.message + ' | Rohtext: ' + (raw || JSON.stringify(data)).substring(0, 150));
-return;
-}
+catch(e) { showError('JSON-Fehler: ' + e.message + ' | ' + raw.substring(0,120)); return; }
 
-currentSpots = parsed.spots || [];
-renderResults(parsed.destination || ort, standort);
+// Filter out blacklisted spots
+curSpots = (parsed.spots || []).filter(function(s) {
+return !isBlacklisted(s.name, ort);
+});
+curDest = parsed.destination || ort;
+curQuartier = quartier;
+
+// Show destination confirmation
+var confirmEl = document.getElementById('dest-confirm');
+var confirmTxt = 'Reiseziel erkannt: <strong>' + esc(curDest) + '</strong>';
+if (parsed.region) confirmTxt += ' &middot; ' + esc(parsed.region);
+if (parsed.border_note) confirmTxt += '<br><em>' + esc(parsed.border_note) + '</em>';
+confirmEl.innerHTML = confirmTxt;
+confirmEl.style.display = 'block';
+
+renderResults();
 })
 .catch(function(e) {
 clearInterval(loadingInterval);
@@ -616,174 +589,349 @@ showError('Verbindungsfehler: ' + (e.message || 'Unbekannt'));
 });
 }
 
-/* =========================================================
+/* =================================================================
 RENDER RESULTS
-========================================================= */
-function renderResults(destination, standort) {
+================================================================= */
+function renderResults() {
 var grid = document.getElementById('spots-grid');
 grid.innerHTML = '';
 
-document.getElementById('results-title').textContent = destination;
-var meta = currentSpots.length + ' Spots gefunden';
-if (standort) meta += ' \u00b7 Fahrzeiten ab ' + standort;
-document.getElementById('results-meta').textContent = meta;
+document.getElementById('results-title').textContent = curDest;
+document.getElementById('results-meta').textContent =
+curSpots.length + ' Spots' + (curQuartier ? ' \u00b7 ab ' + curQuartier : '');
 document.getElementById('results').style.display = 'block';
+document.getElementById('btn-save-trip').style.display = curSpots.length > 0 ? 'inline-block' : 'none';
 
-currentSpots.forEach(function(spot) {
-grid.appendChild(buildCard(spot));
-});
-
-renderSaved();
+curSpots.forEach(function(spot) { grid.appendChild(buildCard(spot)); });
 }
 
-/* =========================================================
+/* =================================================================
 BUILD CARD
-========================================================= */
+================================================================= */
 function buildCard(spot) {
 var cfg = TYPE[spot.type] || { label: spot.type, bar: 'gold', badge: '' };
-var isSaved = savedSpots.some(function(s) { return s.id === spot.id; });
-var isVisited = savedSpots.some(function(s) { return s.id === spot.id && s.visited; });
-
-var fz = (spot.fahrzeit_min || 0) < 60
-? (spot.fahrzeit_min || '?') + ' Min.'
-: Math.floor(spot.fahrzeit_min / 60) + 'h ' + (spot.fahrzeit_min % 60 ? (spot.fahrzeit_min % 60) + 'min' : '');
+var fzMin = spot.fahrzeit_min || 0;
+var fz = fzMin < 60
+? fzMin + ' Min.'
+: Math.floor(fzMin / 60) + 'h' + (fzMin % 60 ? ' ' + (fzMin % 60) + 'min' : '');
 
 var card = document.createElement('div');
-card.className = 'spot-card' + (isVisited ? ' visited' : '');
+card.className = 'spot-card';
 card.id = 'card-' + spot.id;
 
 card.innerHTML =
 '<div class="type-bar ' + cfg.bar + '"></div>' +
 '<div class="spot-body">' +
 '<span class="spot-badge ' + cfg.badge + '">' + esc(cfg.label) + '</span>' +
+(spot.country ? '<div class="spot-country">&#127760; ' + esc(spot.country) + '</div>' : '') +
 '<div class="spot-name">' + esc(spot.name) + '</div>' +
 '<div class="spot-desc">' + esc(spot.description) + '</div>' +
-(spot.besonderheit ? '<div class="spot-highlight">&#10022;&nbsp;' + esc(spot.besonderheit) + '</div>' : '') +
-(spot.tipp ? '<div class="spot-tipp">&#128161;&nbsp;' + esc(spot.tipp) + '</div>' : '') +
+(spot.besonderheit ? '<div class="spot-hl">&#10022; ' + esc(spot.besonderheit) + '</div>' : '') +
+(spot.tipp ? '<div class="spot-tip">&#128161; ' + esc(spot.tipp) + '</div>' : '') +
 '<div class="spot-meta">' +
-'<span>&#128205;&nbsp;' + (spot.distanz_km || '?') + ' km</span>' +
-'<span>&#128663;&nbsp;ca. ' + fz + '</span>' +
+'<span>&#128205; ' + (spot.distanz_km || '?') + ' km</span>' +
+'<span>&#128663; ca. ' + fz + '</span>' +
 '</div>' +
 '</div>' +
-'<div class="spot-actions">' +
-'<button type="button" class="btn-act save ' + (isSaved ? 'on' : '') + '" id="bs-' + spot.id + '" onclick="toggleSave(\'' + spot.id + '\')">' + (isSaved ? '\u2713 Gespeichert' : '+ Speichern') + '</button>' +
-'<button type="button" class="btn-act vis ' + (isVisited ? 'on' : '') + '" id="bv-' + spot.id + '" onclick="toggleVisited(\'' + spot.id + '\')">' + (isVisited ? '\u2713 Besucht' : '&#128506; Besucht?') + '</button>' +
-'<button type="button" class="btn-act dis" onclick="dismissCard(\'' + spot.id + '\')">\u2715</button>' +
+'<div class="spot-actions" id="acts-' + spot.id + '">' +
+buildActions(spot.id) +
 '</div>';
 
 return card;
 }
 
-function esc(str) {
-if (!str) return '';
-return String(str)
-.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function buildActions(id) {
+var tripId = getTripId(curDest);
+var inTrip = tripId && isInTrip(tripId, id);
+var isVisited = tripId && isVisitedInTrip(tripId, id);
+
+return (tripId
+? '<button type="button" class="btn-sm moss ' + (inTrip ? 'on' : '') + '" onclick="toggleInTrip(\'' + id + '\')">' +
+(inTrip ? '\u2713 Im Plan' : '+ Zum Plan') + '</button>' +
+'<button type="button" class="btn-sm gold ' + (isVisited ? 'on' : '') + '" onclick="toggleVisited(\'' + id + '\')">' +
+(isVisited ? '\u2713 Besucht' : 'Besucht?') + '</button>'
+: ''
+) +
+'<button type="button" class="btn-sm red" onclick="rejectSpot(\'' + id + '\')">&#10005; Ablehnen</button>';
 }
 
-/* =========================================================
-CARD ACTIONS
-========================================================= */
-function toggleSave(id) {
-var spot = currentSpots.find(function(s) { return s.id === id; });
+/* =================================================================
+REJECT
+================================================================= */
+function rejectSpot(id) {
+var spot = curSpots.find(function(s) { return s.id === id; });
 if (!spot) return;
-var idx = savedSpots.findIndex(function(s) { return s.id === id; });
-if (idx >= 0) savedSpots.splice(idx, 1);
-else savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: false, distanz_km: spot.distanz_km });
-persist(); refreshCard(id); renderSaved();
+
+var blId = normDest(curDest) + ':' + spot.name.toLowerCase();
+if (!blacklist.find(function(b) { return b.id === blId; })) {
+blacklist.push({ id: blId, name: spot.name, dest: curDest });
+saveBL();
 }
 
-function toggleVisited(id) {
-var spot = currentSpots.find(function(s) { return s.id === id; });
-if (!spot) return;
-var saved = savedSpots.find(function(s) { return s.id === id; });
-if (!saved) savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: true, distanz_km: spot.distanz_km });
-else saved.visited = !saved.visited;
-persist(); refreshCard(id); renderSaved();
-}
+curSpots = curSpots.filter(function(s) { return s.id !== id; });
 
-function dismissCard(id) {
 var card = document.getElementById('card-' + id);
-if (!card) return;
-card.style.transition = 'opacity 0.25s';
-card.style.opacity = '0';
-setTimeout(function() { card.classList.add('dismissed'); card.style.opacity = ''; }, 260);
+if (card) {
+card.style.transition = 'opacity 0.22s, transform 0.22s';
+card.style.opacity = '0'; card.style.transform = 'scale(0.95)';
+setTimeout(function() { card.classList.add('dismissed'); }, 230);
 }
 
-function saveAll() {
-currentSpots.forEach(function(spot) {
-if (!savedSpots.find(function(s) { return s.id === spot.id; })) {
-savedSpots.push({ id: spot.id, name: spot.name, type: spot.type, visited: false, distanz_km: spot.distanz_km });
+updateBadges();
+document.getElementById('btn-save-trip').style.display = curSpots.length > 0 ? 'inline-block' : 'none';
+}
+
+function isBlacklisted(name, dest) {
+var id = normDest(dest) + ':' + (name || '').toLowerCase();
+return !!blacklist.find(function(b) { return b.id === id; });
+}
+
+/* =================================================================
+SAVE TRIP
+================================================================= */
+function saveCurrentTrip() {
+if (curSpots.length === 0) return;
+var existing = trips.find(function(t) { return normDest(t.name) === normDest(curDest); });
+
+if (existing) {
+curSpots.forEach(function(s) {
+if (!existing.spots.find(function(e) { return normDest(e.name) === normDest(s.name); })) {
+existing.spots.push(spotToStore(s));
 }
 });
-persist();
-currentSpots.forEach(function(spot) { refreshCard(spot.id); });
-renderSaved();
+existing.date = dateStr();
+} else {
+trips.push({
+id: 'trip_' + Date.now(),
+name: curDest,
+quartier: curQuartier,
+date: dateStr(),
+spots: curSpots.map(spotToStore)
+});
 }
 
-function refreshCard(id) {
-var isSaved = savedSpots.some(function(s) { return s.id === id; });
-var isVisited = savedSpots.some(function(s) { return s.id === id && s.visited; });
-var card = document.getElementById('card-' + id);
-if (card) { if (isVisited) card.classList.add('visited'); else card.classList.remove('visited'); }
-var bs = document.getElementById('bs-' + id);
-if (bs) { bs.textContent = isSaved ? '\u2713 Gespeichert' : '+ Speichern'; if (isSaved) bs.classList.add('on'); else bs.classList.remove('on'); }
-var bv = document.getElementById('bv-' + id);
-if (bv) { bv.innerHTML = isVisited ? '\u2713 Besucht' : '&#128506; Besucht?'; if (isVisited) bv.classList.add('on'); else bv.classList.remove('on'); }
+saveTrips();
+refreshAllActions();
+
+var btn = document.getElementById('btn-save-trip');
+var old = btn.textContent;
+btn.textContent = '\u2713 Gespeichert!';
+btn.classList.add('on');
+setTimeout(function() { btn.textContent = old; btn.classList.remove('on'); }, 1800);
 }
 
-/* =========================================================
-SAVED LIST
-========================================================= */
-function renderSaved() {
-var list = document.getElementById('saved-list');
-var section = document.getElementById('saved-section');
-var divider = document.getElementById('saved-divider');
+function spotToStore(s) {
+return { id: s.id, name: s.name, type: s.type, country: s.country, distanz_km: s.distanz_km, visited: false };
+}
+
+/* =================================================================
+TRIP SPOT ACTIONS
+================================================================= */
+function getTripId(dest) {
+var t = trips.find(function(t) { return normDest(t.name) === normDest(dest); });
+return t ? t.id : null;
+}
+
+function spotByName(tripId, spotId) {
+var trip = trips.find(function(t) { return t.id === tripId; });
+var cur = curSpots.find(function(s) { return s.id === spotId; });
+if (!trip || !cur) return null;
+return trip.spots.find(function(s) { return normDest(s.name) === normDest(cur.name); });
+}
+
+function isInTrip(tripId, spotId) { return !!spotByName(tripId, spotId); }
+
+function isVisitedInTrip(tripId, spotId) {
+var s = spotByName(tripId, spotId);
+return s ? s.visited : false;
+}
+
+function toggleInTrip(spotId) {
+var tripId = getTripId(curDest);
+if (!tripId) { saveCurrentTrip(); return; }
+var trip = trips.find(function(t) { return t.id === tripId; });
+var cur = curSpots.find(function(s) { return s.id === spotId; });
+if (!trip || !cur) return;
+var idx = trip.spots.findIndex(function(s) { return normDest(s.name) === normDest(cur.name); });
+if (idx >= 0) trip.spots.splice(idx, 1);
+else trip.spots.push(spotToStore(cur));
+saveTrips(); refreshAllActions();
+}
+
+function toggleVisited(spotId) {
+var tripId = getTripId(curDest);
+if (!tripId) return;
+var s = spotByName(tripId, spotId);
+if (s) { s.visited = !s.visited; saveTrips(); refreshAllActions(); }
+}
+
+function refreshAllActions() {
+curSpots.forEach(function(spot) {
+var el = document.getElementById('acts-' + spot.id);
+if (el) el.innerHTML = buildActions(spot.id);
+var card = document.getElementById('card-' + spot.id);
+if (card) {
+var tripId = getTripId(curDest);
+var vis = tripId && isVisitedInTrip(tripId, spot.id);
+if (vis) card.classList.add('visited'); else card.classList.remove('visited');
+}
+});
+}
+
+/* =================================================================
+RENDER TRIPS PAGE
+================================================================= */
+function renderTrips() {
+var list = document.getElementById('trips-list');
 list.innerHTML = '';
 
-if (savedSpots.length === 0) {
-section.style.display = 'none';
-divider.style.display = 'none';
+if (trips.length === 0) {
+list.innerHTML = '<div class="trips-empty">Noch keine Reisen gespeichert.<br>Spots suchen &rarr; &bdquo;Reise speichern&ldquo;.</div>';
 return;
 }
-section.style.display = 'block';
-divider.style.display = 'block';
 
-savedSpots.forEach(function(s) {
+trips.forEach(function(trip) {
+var vis = trip.spots.filter(function(s) { return s.visited; }).length;
+var card = document.createElement('div');
+card.className = 'trip-card'; card.id = 'trip-' + trip.id;
+
+var spotsHtml = trip.spots.map(function(s) {
 var cfg = TYPE[s.type] || { label: s.type };
-var item = document.createElement('div');
-item.className = 'saved-item';
-item.innerHTML =
-'<span class="s-name">' + esc(s.name) + '</span>' +
-'<span class="s-type">' + esc(cfg.label) + '</span>' +
-(s.distanz_km ? '<span class="s-dist">&#128205;&nbsp;' + s.distanz_km + ' km</span>' : '') +
-(s.visited ? '<span class="s-vis">\u2713 besucht</span>' : '') +
-'<button class="s-del" type="button" onclick="removeSaved(\'' + s.id + '\')">\u2715</button>';
-list.appendChild(item);
+return '<div class="trip-spot-row">' +
+'<span class="tsr-name">' + esc(s.name) + '</span>' +
+'<span class="tsr-type">' + esc(cfg.label) + '</span>' +
+(s.country ? '<span class="tsr-type">&#127760; ' + esc(s.country) + '</span>' : '') +
+(s.distanz_km ? '<span style="font-size:0.68rem;color:var(--slate)">&#128205; ' + s.distanz_km + ' km</span>' : '') +
+(s.visited ? '<span class="tsr-vis">\u2713 besucht</span>' : '') +
+'<button type="button" class="btn-sm ' + (s.visited ? 'moss on' : 'moss') + '" onclick="toggleTripVis(\'' + trip.id + '\',\'' + s.id + '\')">' +
+(s.visited ? '\u2713' : 'Besucht?') + '</button>' +
+'<button type="button" class="btn-sm rust" onclick="removeTripSpot(\'' + trip.id + '\',\'' + s.id + '\')">&#10005;</button>' +
+'</div>';
+}).join('');
+
+card.innerHTML =
+'<div class="trip-header" onclick="toggleTrip(\'' + trip.id + '\')">' +
+'<div>' +
+'<div class="trip-name">' + esc(trip.name) + '</div>' +
+'<div class="trip-meta">' +
+trip.spots.length + ' Spots' +
+(vis ? ' &middot; ' + vis + ' besucht' : '') +
+(trip.quartier ? ' &middot; ab ' + esc(trip.quartier) : '') +
+(trip.date ? ' &middot; ' + trip.date : '') +
+'</div>' +
+'</div>' +
+'<span class="trip-chevron">&#9660;</span>' +
+'</div>' +
+'<div class="trip-spots">' + spotsHtml + '</div>' +
+'<div class="trip-footer">' +
+'<button type="button" class="btn-sm red" onclick="deleteTrip(\'' + trip.id + '\')">&#128465; Reise l&ouml;schen</button>' +
+'</div>';
+
+list.appendChild(card);
 });
 }
 
-function removeSaved(id) {
-savedSpots = savedSpots.filter(function(s) { return s.id !== id; });
-persist(); refreshCard(id); renderSaved();
+function toggleTrip(id) {
+var c = document.getElementById('trip-' + id);
+if (c) c.classList.toggle('open');
 }
 
-function persist() {
-localStorage.setItem('fernweh_saved', JSON.stringify(savedSpots));
+function toggleTripVis(tripId, spotId) {
+var trip = trips.find(function(t) { return t.id === tripId; });
+if (!trip) return;
+var s = trip.spots.find(function(s) { return s.id === spotId; });
+if (s) s.visited = !s.visited;
+saveTrips(); renderTrips();
 }
 
-/* =========================================================
+function removeTripSpot(tripId, spotId) {
+var trip = trips.find(function(t) { return t.id === tripId; });
+if (!trip) return;
+trip.spots = trip.spots.filter(function(s) { return s.id !== spotId; });
+saveTrips(); renderTrips();
+}
+
+function deleteTrip(id) {
+if (!confirm('Reise wirklich l\u00f6schen?')) return;
+trips = trips.filter(function(t) { return t.id !== id; });
+saveTrips(); updateBadges(); renderTrips();
+}
+
+/* =================================================================
+BLACKLIST PAGE
+================================================================= */
+function renderBL() {
+var list = document.getElementById('bl-list');
+list.innerHTML = '';
+
+if (blacklist.length === 0) {
+list.innerHTML = '<p style="font-size:0.85rem;color:var(--slate);font-style:italic">Keine abgelehnten Spots.</p>';
+document.getElementById('bl-clear-wrap').style.display = 'none';
+return;
+}
+document.getElementById('bl-clear-wrap').style.display = 'block';
+
+var byDest = {};
+blacklist.forEach(function(b) {
+if (!byDest[b.dest]) byDest[b.dest] = [];
+byDest[b.dest].push(b);
+});
+
+Object.keys(byDest).forEach(function(dest) {
+var h = document.createElement('div');
+h.className = 'bl-group-hdr'; h.textContent = dest;
+list.appendChild(h);
+byDest[dest].forEach(function(b) {
+var item = document.createElement('div');
+item.className = 'bl-item';
+item.innerHTML =
+'<span class="bl-name">' + esc(b.name) + '</span>' +
+'<button type="button" class="btn-sm" onclick="restoreBL(\'' + b.id + '\')">Wiederherstellen</button>';
+list.appendChild(item);
+});
+});
+}
+
+function restoreBL(id) {
+blacklist = blacklist.filter(function(b) { return b.id !== id; });
+saveBL(); updateBadges(); renderBL();
+}
+
+function clearBL() {
+blacklist = []; saveBL(); updateBadges(); renderBL();
+}
+
+/* =================================================================
+PERSIST
+================================================================= */
+function saveTrips() { localStorage.setItem('fw_trips', JSON.stringify(trips)); updateBadges(); }
+function saveBL() { localStorage.setItem('fw_blacklist', JSON.stringify(blacklist)); updateBadges(); }
+
+function updateBadges() {
+var tb = document.getElementById('bdg-trips');
+if (trips.length > 0) { tb.textContent = trips.length; tb.style.display = 'inline'; } else tb.style.display = 'none';
+var bb = document.getElementById('bdg-bl');
+if (blacklist.length > 0) { bb.textContent = blacklist.length; bb.style.display = 'inline'; } else bb.style.display = 'none';
+}
+
+/* =================================================================
 HELPERS
-========================================================= */
+================================================================= */
+function normDest(d) { return (d || '').toLowerCase().replace(/\s+/g,'').replace(/[^a-z0-9]/g,''); }
+function dateStr() { return new Date().toLocaleDateString('de-AT'); }
+function esc(s) {
+if (!s) return '';
+return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 function showError(msg) {
-document.getElementById('error-container').innerHTML =
-msg ? '<div class="error-box">' + msg + '</div>' : '';
+document.getElementById('error-box').innerHTML = msg ? '<div class="error-box">' + msg + '</div>' : '';
 }
 
 document.addEventListener('keydown', function(e) {
-if (e.key === 'Enter') startSearch();
+if (e.key === 'Enter' && document.getElementById('page-search').classList.contains('active')) startSearch();
 });
 
-renderSaved();
+updateBadges();
 </script>
 
 </body>
